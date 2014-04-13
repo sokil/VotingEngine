@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{ _('Distributive manager') }}</title>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.custom.css"/>
+    </head>
+    <body>
+        <div class="container top-space">
+            {% for message in get_flashed_messages() %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

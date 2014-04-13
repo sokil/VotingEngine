@@ -1,0 +1,45 @@
+import os
+
+# Create app
+from flask import Flask, request
+app = Flask(__name__)
+
+# Configure app
+app.config.from_object('configs.default.Config')
+
+env = os.getenv('APPLICATION_ENV', 'development')
+app.config.from_object('configs.' + env + '.Config')
+
+# Register routes
+from routes.voting import voting
+app.register_blueprint(voting)
+
+# Database connection
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy(app)
+
+from models.voting import Voting
+from models.voting_variant import VotingVariant
+from models.vote import Vote
+from models.person import Person
+
+# Localization
+from flask_babel import Babel
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(app.config['SUPPORTED_LANGUAGES'])
+
+# Log errors
+if app.config['LOGGER_ENABLED'] and len(app.config['LOGGER_EMAILS']) > 0:
+    import logging
+    from logging.handlers import SMTPHandler
+    mail_handler = SMTPHandler(
+        app.config['SMTP_HOST'],
+        app.config['SMTP_FROM'],
+        app.config['LOGGER_EMAILS'],
+        'Distributive Manager error'
+    )
+    mail_handler.setLevel(logging.ERROR)
+    app.logger.addHandler(mail_handler)

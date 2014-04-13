@@ -1,0 +1,20 @@
+class Config(object):
+    HOSTNAME = 'vote'
+
+    PORT = 9001
+    DEBUG = True
+
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost/voting?charset=utf8'
+
+    SECRET_KEY = 'fa+hq4;tr7q4@ra8*t62^783,.87'
+
+    PERMANENT_SESSION_LIFETIME = 1200
+
+    LOGGER_ENABLED = True
+    LOGGER_EMAILS = []
+
+    SMTP_FROM = None
+    SMTP_HOST = '127.0.0.1'
+
+    SUPPORTED_LANGUAGES = ['en', 'uk', 'ru']
+    BABEL_DEFAULT_LOCALE = 'uk'
