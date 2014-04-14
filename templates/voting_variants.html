@@ -1,4 +1,60 @@
 {% extends "empty_layout.html" %}
+{% block title %}{{ voting['name'] }} :: {% endblock %}
 {% block body %}
-<h1>{{ voting['name'] }}</h1>
+<ol class="breadcrumb">
+    <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
+    <li>{{ voting['name'] }}</li>
+</ol>
+
+<div class="row-fluid">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">{{ _('Variants') }}</div>
+            <ul id="variants" class="votingPanel list-group">
+            {% for variant in voting.variants %}
+                <li class="list-group-item">
+                    <input type="hidden" name="variant[]" value="{{ variant.id }}" />
+                    <h4 class="list-group-item-heading">{{ variant.title }}</h4>
+                    <p class="list-group-item-text">{{ variant.description }}</p>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <form id="frmVote" method="post" action="{{ url_for('voting.voting_save', voting_id=voting['id']) }}">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    {{ _('Vote') }}
+                    <input type="submit" class="btn btn-danger btn-xs pull-right" value="{{ _('Vote') }}">
+                </div>
+                <ul id="vote" class="votingPanel list-group">
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#variants, #vote")
+        .sortable({
+          connectWith: ".votingPanel"
+        })
+        .disableSelection();
+
+    $('#frmVote').submit(function(e) {
+        e.preventDefault();
+        var $frm = $(this);
+        if($('input[name="variant"]', $frm).length == 0) {
+            alert('{{ _('Choose some variants, please...') }}');
+            return false;
+        }
+
+        $.post($frm.attr('action'), $frm.serialize(), function(response) {
+            console.log(response);
+        }, 'json');
+    })
+</script>
+
 {% endblock %}

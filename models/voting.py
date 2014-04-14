@@ -8,4 +8,4 @@ class Voting(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(255))
 
-    voting_variants = db.relationship("VotingVariant", backref="votings")
+    variants = db.relationship("VotingVariant", backref="votings")

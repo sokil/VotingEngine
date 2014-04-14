@@ -7,3 +7,10 @@
 {
     margin-bottom: 10px;
 }
+
+.votingPanel
+{
+    min-height: 50px;
+    max-height: 470px;
+    overflow: auto;
+}
