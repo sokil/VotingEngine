@@ -1,6 +1,27 @@
 {% extends "empty_layout.html" %}
 {% block title %}{{ voting['name'] }} :: {% endblock %}
 {% block body %}
+
+{% if not user.is_authenticated() %}
+<div class="modal" id="frmAuth">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ _('Sign in') }}</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
+                <button type="button" class="btn btn-primary">{{ _('Sign in') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 <ol class="breadcrumb">
     <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
     <li>{{ voting['name'] }}</li>
@@ -11,19 +32,21 @@
         <div class="panel panel-info">
             <div class="panel-heading">{{ _('Variants') }}</div>
             <ul id="variants" class="votingPanel list-group">
-            {% for variant in voting.variants %}
+                {% for variant in voting.variants %}
                 <li class="list-group-item">
-                    <input type="hidden" name="variant[]" value="{{ variant.id }}" />
+                    <input type="hidden" name="variant[]" value="{{ variant.id }}"/>
                     <h4 class="list-group-item-heading">{{ variant.title }}</h4>
+
                     <p class="list-group-item-text">{{ variant.description }}</p>
                 </li>
-            {% endfor %}
+                {% endfor %}
             </ul>
         </div>
     </div>
 
     <div class="col-md-6">
-        <form id="frmVote" method="post" action="{{ url_for('voting.voting_save', voting_id=voting['id']) }}">
+        <form id="frmVote" method="post" action="{{ url_for('voting.voting_save', voting_id=voting['id']) }}"
+              data-user-auth="{{ user.is_authenticated() }}">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     {{ _('Vote') }}
@@ -37,24 +60,35 @@
 </div>
 
 <script type="text/javascript">
+    // sort votes
     $("#variants, #vote")
         .sortable({
           connectWith: ".votingPanel"
         })
         .disableSelection();
 
+    // send form
     $('#frmVote').submit(function(e) {
         e.preventDefault();
         var $frm = $(this);
-        if($('input[name="variant"]', $frm).length == 0) {
+        if($('input[name="variant\[\]"]', $frm).length == 0) {
             alert('{{ _('Choose some variants, please...') }}');
             return false;
         }
 
-        $.post($frm.attr('action'), $frm.serialize(), function(response) {
-            console.log(response);
-        }, 'json');
+        // check auth
+        if($frm.data('user-auth') === 'False') {
+            // show login form
+            $('#frmAuth').modal({})
+        } else {
+            // auth
+            $.post($frm.attr('action'), $frm.serialize(), function(response) {
+                console.log(response);
+            }, 'json');
+        }
+
     })
+
 </script>
 
 {% endblock %}

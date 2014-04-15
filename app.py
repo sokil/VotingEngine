@@ -2,6 +2,8 @@ import os
 
 # Create app
 from flask import Flask, request
+
+# Init app
 app = Flask(__name__)
 
 # Configure app
@@ -14,6 +16,9 @@ app.config.from_object('configs.' + env + '.Config')
 from routes.voting import voting
 app.register_blueprint(voting)
 
+from routes.auth import auth
+app.register_blueprint(auth)
+
 # Database connection
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy(app)
@@ -21,7 +26,17 @@ db = SQLAlchemy(app)
 from models.voting import Voting
 from models.voting_variant import VotingVariant
 from models.vote import Vote
-from models.person import Person
+from models.user import User
+
+# Login manager
+from flask_login import LoginManager
+loginManager = LoginManager()
+loginManager.login_view = 'auth.login'
+loginManager.init_app(app)
+
+@loginManager.user_loader
+def load_user(email):
+    return User.query.find(email=email)
 
 # Localization
 from flask_babel import Babel

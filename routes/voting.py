@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify
+from flask_login import current_user
 
 voting = Blueprint('voting', __name__)
 
@@ -15,7 +16,10 @@ def voting_list():
 def voting_variants(voting_id):
     from models.voting import Voting
     voting_instance = Voting.query.get(voting_id)
-    return render_template('voting_variants.html', voting=voting_instance)
+
+    from flask_login import current_user
+
+    return render_template('voting_variants.html', voting=voting_instance, user=current_user)
 
 
 @voting.route('/voting/save/<voting_id>', methods=['POST'])
@@ -24,27 +28,22 @@ def voting_save(voting_id):
     response = {'error': 0}
 
     try:
-        # get person
-        person_id = 4
 
-        # get voting
+        # check permission to save
+        if not current_user.is_authenticated():
+            raise Exception('User not authorised')
+
+        # prepare vote
         from models.voting import Voting
         voting_instance = Voting.query.get(voting_id)
-
-        # get voting variants
-        valid_variant_id_list = [variant.id for variant in voting_instance.variants]
-        voted_variant_id_list = [int(variant_if) for variant_if in request.form.getlist('variant')]
-
-        variant_id_list = [variant_id for variant_id in voted_variant_id_list if variant_id in valid_variant_id_list]
-        if len(variant_id_list) == 0:
-            raise Exception('Wrong elements specified')
+        variant_id_list = voting_instance.filter_invalid_variants(request.form.getlist('variant'))
 
         # save vote
         from app import db
         from models.vote import Vote
-        point = len(valid_variant_id_list)
+        point = len(voting_instance.variants)
         for variant_id in variant_id_list:
-            db.session.add(Vote(voting_id=voting_id, voting_variant_id=variant_id, point=point, person_id=person_id))
+            db.session.add(Vote(voting_id=voting_id, voting_variant_id=variant_id, point=point, user_id=current_user['id']))
             point -= 1
 
         db.session.commit()

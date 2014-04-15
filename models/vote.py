@@ -9,4 +9,4 @@ class Vote(db.Model):
     voting_id = Column(Integer, ForeignKey('votings.id'))
     voting_variant_id = Column(Integer, ForeignKey('voting_variants.id'))
     point = Column(Integer)
-    person_id = Column(Integer, ForeignKey('persons.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
