@@ -1,0 +1,19 @@
+{% extends "empty_layout.html" %}
+{% block title %}{{ _('Edit voting') }} :: {% endblock %}
+{% block body %}
+<h1>{{ _('Voting editor') }}</h1>
+<ol class="breadcrumb">
+    <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
+    <li>{{ voting.name|default(_('Add voting'), true) }}</li>
+</ol>
+<form method="post" action="{{ url_for('voting.voting_save') }}">
+    <input type="hidden" name="id" value="{{ voting.id|default('', true) }}" />
+    <div class="form-group">
+        <label>{{ _('Name') }}</label>
+        <input type="text" class="form-control" name="name" placeholder="{{ _('Voting name') }}" value="{{ voting.name|default('', true) }}" autocomplete="off">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />
+    </div>
+</form>
+{% endblock %}

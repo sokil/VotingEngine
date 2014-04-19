@@ -18,3 +18,8 @@ class Config(object):
 
     SUPPORTED_LANGUAGES = ['en', 'uk', 'ru']
     BABEL_DEFAULT_LOCALE = 'uk'
+
+    AUTH_VKONTAKTE = False
+    AUTH_VKONTAKTE_HOST = "https://oauth.vk.com"
+    AUTH_VKONTAKTE_APP_ID = None
+    AUTH_VKONTAKTE_SECRET = None

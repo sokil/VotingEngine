@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, current_app, redirect, session, url_for
 from flask_login import current_user
 
 voting = Blueprint('voting', __name__)
@@ -11,7 +11,25 @@ def voting_list():
 
     return render_template('voting_list.html', voting_list=voting_list)
 
+"""
+Voting editor
+"""
+@voting.route('/voting/new')
+@voting.route('/voting/edit/<voting_id>')
+def voting_edit(voting_id=None):
 
+    from models.voting import Voting
+    if voting_id:
+        voting_instance = Voting.query.get(voting_id)
+    else:
+        voting_instance = Voting()
+
+    return render_template('voting_edit.html', voting=voting_instance)
+
+
+"""
+Voting list
+"""
 @voting.route('/voting/<voting_id>')
 def voting_variants(voting_id):
     from models.voting import Voting
@@ -22,34 +40,70 @@ def voting_variants(voting_id):
     return render_template('voting_variants.html', voting=voting_instance, user=current_user)
 
 
-@voting.route('/voting/save/<voting_id>', methods=['POST'])
-def voting_save(voting_id):
+"""
+Save vote
+"""
+@voting.route('/voting/save', methods=['POST'])
+def voting_save():
+    from models.voting import Voting
+    if request.form.get('id'):
+        voting_instance = Voting.query.get(request.form.get('id'))
+    else:
+        voting_instance = Voting()
 
-    response = {'error': 0}
+    voting_instance.name = unicode(request.form['name'])
 
-    try:
+    from app import db
+    db.session.add(voting_instance)
+    db.session.commit()
 
-        # check permission to save
-        if not current_user.is_authenticated():
-            raise Exception('User not authorised')
+    return redirect(url_for('voting.voting_edit', voting_id=voting_instance.id))
 
-        # prepare vote
-        from models.voting import Voting
-        voting_instance = Voting.query.get(voting_id)
-        variant_id_list = voting_instance.filter_invalid_variants(request.form.getlist('variant'))
+"""
+New voting variant
+"""
+@voting.route('/voting/<voting_id>/new_variant')
+def variant_new(voting_id=None):
 
-        # save vote
-        from app import db
-        from models.vote import Vote
-        point = len(voting_instance.variants)
-        for variant_id in variant_id_list:
-            db.session.add(Vote(voting_id=voting_id, voting_variant_id=variant_id, point=point, user_id=current_user['id']))
-            point -= 1
+    from models.voting_variant import VotingVariant
+    variant_instance = VotingVariant(voting_id=voting_id)
 
-        db.session.commit()
+    return render_template('voting_variant_edit.html', variant=variant_instance)
 
-    except Exception, e:
-        response['error'] = 1
-        response['errorMessage'] = str(e)
 
-    return jsonify(response)
+"""
+Edit voting variant
+"""
+@voting.route('/voting/edit_variant/<variant_id>')
+def variant_edit(variant_id=None):
+
+    from models.voting_variant import VotingVariant
+    variant_instance = VotingVariant.query.get(variant_id)
+
+    return render_template('voting_variant_edit.html', variant=variant_instance)
+
+
+"""
+Save voting variant
+"""
+@voting.route('/voting/save_variant', methods=['POST'])
+def variant_save():
+
+    from models.voting_variant import VotingVariant
+
+    if request.form.get('id'):
+        variant_instance = VotingVariant.query.get(request.form.get('id'))
+    else:
+        if 'voting_id' not in request.form:
+            raise Exception('Voting not specified');
+
+        variant_instance = VotingVariant(voting_id=request.form['voting_id'])
+
+    variant_instance.title = request.form['title']
+    variant_instance.description = request.form['description']
+
+    from app import db
+    db.session.add(variant_instance)
+    db.session.commit()
+
+    return redirect(url_for('voting.variant_edit', variant_id=variant_instance.id))

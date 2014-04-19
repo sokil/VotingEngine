@@ -10,6 +10,7 @@ class User(db.Model):
     id = Column(Integer, primary_key=True)
     password = Column(String(255))
     salt = Column(String(255))
+    vkontakte_id = Column(Integer)
 
     votes = db.relationship("Vote", backref="persons")
 

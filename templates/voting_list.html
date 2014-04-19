@@ -1,6 +1,10 @@
 {% extends "empty_layout.html" %}
 {% block title %}{{ _('Voting list') }} :: {% endblock %}
 {% block body %}
+<h1>{{ _('Available votings') }}</h1>
+    <div class="btn-toolbar bottom-space">
+        <a href="/voting/new" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add voting') }}</a>
+    </div>
 <table class="table table-striped">
     <tr>
         <th>{{ _('Name') }}</th>

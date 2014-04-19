@@ -11,21 +11,35 @@
                 <h4 class="modal-title">{{ _('Sign in') }}</h4>
             </div>
             <div class="modal-body">
-
+                <a href="javascript:void(0);" data-auth-method="facebook" class="btn btn-default login-btn">Facebook</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ _('Close') }}</button>
-                <button type="button" class="btn btn-primary">{{ _('Sign in') }}</button>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('#frmAuth .modal-body a.login-btn').click(function(e) {
+        $('#frmAuth').modal('hide');
+        window.open('/auth/form/' + $(this).data('auth-method'));
+    });
+</script>
 {% endif %}
 
 <ol class="breadcrumb">
     <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
     <li>{{ voting['name'] }}</li>
 </ol>
+
+{% if not user.is_authenticated() %}
+<div class="btn-toolbar">
+    <a href="{{ url_for('voting.variant_new', voting_id=voting.id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add variant') }}</a>
+</div>
+<hr>
+{% endif %}
+
+<h1>{{ voting['name'] }}</h1>
 
 <div class="row-fluid">
     <div class="col-md-6">
@@ -45,12 +59,13 @@
     </div>
 
     <div class="col-md-6">
-        <form id="frmVote" method="post" action="{{ url_for('voting.voting_save', voting_id=voting['id']) }}"
-              data-user-auth="{{ user.is_authenticated() }}">
+        <form id="frmVote" method="post" action="{{ url_for('vote.vote_save', voting_id=voting['id']) }}" data-auth-method="{{ user.is_authenticated() }}">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     {{ _('Vote') }}
-                    <input type="submit" class="btn btn-danger btn-xs pull-right" value="{{ _('Vote') }}">
+                    <button type="submit" class="btn btn-danger btn-xs pull-right">
+                        <span class="glyphicon glyphicon-send"></span> {{ _('Vote') }}
+                    </button>
                 </div>
                 <ul id="vote" class="votingPanel list-group">
                 </ul>
@@ -77,11 +92,12 @@
         }
 
         // check auth
-        if($frm.data('user-auth') === 'False') {
+        var authMethod = $frm.data('auth-method');
+        if(authMethod === 'False') {
             // show login form
-            $('#frmAuth').modal({})
+            $('#frmAuth').modal();
         } else {
-            // auth
+            // save vote
             $.post($frm.attr('action'), $frm.serialize(), function(response) {
                 console.log(response);
             }, 'json');

@@ -16,8 +16,11 @@ app.config.from_object('configs.' + env + '.Config')
 from routes.voting import voting
 app.register_blueprint(voting)
 
-from routes.auth import auth
-app.register_blueprint(auth)
+from routes.vote import vote
+app.register_blueprint(vote)
+
+# from routes.auth import auth
+# app.register_blueprint(auth)
 
 # Database connection
 from flask_sqlalchemy import SQLAlchemy

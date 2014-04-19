@@ -1,0 +1,32 @@
+{% extends "empty_layout.html" %}
+{% block title %}{{ _('Edit voting variant') }} :: {% endblock %}
+{% block body %}
+<h1>{{ _('Voting variant editor') }}</h1>
+<ol class="breadcrumb">
+    <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
+    <li><a href="{{ url_for('voting.voting_variants', voting_id=variant.voting_id) }}">{{ _('Voting') }}</a></li>
+    <li>{{ variant.title|default(_('Add variant'), true) }}</li>
+</ol>
+<form method="post" action="{{ url_for('voting.variant_save') }}">
+    {% if variant.id %}
+    <input type="hidden" name="id" value="{{ variant.id }}" />
+    {% else %}
+    <input type="hidden" name="voting_id" value="{{ variant.voting_id }}" />
+    {% endif %}
+
+    <div class="form-group">
+        <label>{{ _('Title') }}</label>
+        <input type="text" class="form-control" name="title" placeholder="{{ _('Variant title') }}" value="{{ variant.title|default('', true) }}" autocomplete="off">
+    </div>
+
+    <div class="form-group">
+        <label>{{ _('Description') }}</label>
+        <textarea rows="6" class="form-control" name="description" placeholder="{{ _('Variant description') }}">{{ variant.description|default('', true) }}</textarea>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />
+    </div>
+</form>
+{% endblock %}

@@ -10,4 +10,4 @@ class VotingVariant(db.Model):
     title = Column(String(255))
     description = Column(String(1000))
 
-    votes = db.relationship('Vote', backref='voting_variants')
+    voting = db.relationship('Voting')
