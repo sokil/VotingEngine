@@ -19,8 +19,8 @@ app.register_blueprint(voting)
 from routes.vote import vote
 app.register_blueprint(vote)
 
-# from routes.auth import auth
-# app.register_blueprint(auth)
+from routes.auth import auth
+app.register_blueprint(auth)
 
 # Database connection
 from flask_sqlalchemy import SQLAlchemy
@@ -38,8 +38,8 @@ loginManager.login_view = 'auth.login'
 loginManager.init_app(app)
 
 @loginManager.user_loader
-def load_user(email):
-    return User.query.find(email=email)
+def load_user(id):
+    return User.query.get(id)
 
 # Localization
 from flask_babel import Babel

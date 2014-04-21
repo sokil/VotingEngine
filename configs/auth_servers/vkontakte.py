@@ -23,7 +23,7 @@ def authorize():
             "error_description": "redirect_uri has wrong domain, check application settings"
         })
 
-    html = '<html><body><form action="/grant?redirect_uri=' + request.args.get('redirect_uri') + '"><input type="submit" value="Allow" /></form></body></html>'
+    html = '<html><body><form action="/grant"><input type="hidden" name="redirect_uri" value="' + request.args.get('redirect_uri') + '"><input type="submit" value="Allow" /></form></body></html>'
     return render_template_string(html)
 
 

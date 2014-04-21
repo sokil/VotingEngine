@@ -14,3 +14,31 @@
     max-height: 470px;
     overflow: auto;
 }
+
+.btn-social
+{
+    height: 38px;
+    line-height: 25px;
+    background: no-repeat 2px 2px;
+    padding-left: 40px;
+}
+
+.btn-social-vk
+{
+    background-image: url(/images/social/vkontakte.png)
+}
+
+.btn-social-fb
+{
+    background-image: url(/images/social/facebook.png)
+}
+
+.btn-social-twitter
+{
+    background-image: url(/images/social/twitter.png)
+}
+
+.btn-social-google
+{
+    background-image: url(/images/social/google.png)
+}

@@ -8,9 +8,10 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
+    email = Column(String(255), index=True)
     password = Column(String(255))
     salt = Column(String(255))
-    vkontakte_id = Column(Integer)
+    vkontakte_id = Column(Integer, index=True)
 
     votes = db.relationship("Vote", backref="persons")
 
@@ -24,7 +25,7 @@ class User(db.Model):
         return False
 
     def get_id(self):
-        return self['id']
+        return self.id
 
     def set_password(self, password):
         # generate salt
@@ -35,8 +36,8 @@ class User(db.Model):
             salt += alphabet[randint(0, alphabet_length)]
 
         # store password and salt
-        self['password'] = self.get_password_hash(password, salt)
-        self['salt'] = salt
+        self.password = self.get_password_hash(password, salt)
+        self.salt = salt
 
         return self
 

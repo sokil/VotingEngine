@@ -1,5 +1,5 @@
 class Config(object):
-    HOSTNAME = 'vote'
+    HOSTNAME = 'voting'
 
     PORT = 9001
     DEBUG = True

@@ -3,7 +3,9 @@ from flask_login import current_user
 
 voting = Blueprint('voting', __name__)
 
-
+"""
+Voting list
+"""
 @voting.route("/")
 def voting_list():
     from models.voting import Voting
