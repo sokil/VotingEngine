@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, jsonify, current_app, redirect, session, url_for
-from flask_login import current_user
+from flask import Blueprint, render_template, request, jsonify, current_app, redirect, session, url_for, flash
+from flask_login import current_user, login_required
+from flask_babel import gettext
 
 voting = Blueprint('voting', __name__)
 
@@ -30,7 +31,7 @@ def voting_edit(voting_id=None):
 
 
 """
-Voting list
+Voting page
 """
 @voting.route('/voting/<voting_id>')
 def voting_variants(voting_id):
@@ -109,3 +110,22 @@ def variant_save():
     db.session.commit()
 
     return redirect(url_for('voting.variant_edit', variant_id=variant_instance.id))
+
+
+"""
+Show results
+"""
+@voting.route('/voting/result/<voting_id>')
+@login_required
+def voting_result(voting_id):
+
+    # Check if user voted in this voting
+    from models.vote import Vote
+    if Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is None:
+        flash(gettext(u'You must vote first to see results'))
+        return redirect(url_for('voting.voting_variants', voting_id=voting_id))
+
+    # get variants with points
+    from models.voting import Voting
+
+    return render_template('voting_result.html')

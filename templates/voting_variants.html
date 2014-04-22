@@ -27,7 +27,9 @@
 <script type="text/javascript">
     $('#frmAuth .modal-body a.btn-social').click(function(e) {
         $('#frmAuth').modal('hide');
-        window.open('/auth/form/' + $(this).data('auth-method'));
+        $('#frmVote')
+            .data('auth-method', $(this).data('auth-method'))
+            .submit();
     });
 </script>
 {% endif %}
@@ -101,10 +103,19 @@
         if(authMethod === 'False') {
             // show login form
             $('#frmAuth').modal();
-        } else {
-            // save vote
+        } else if(authMethod === 'True') {
+            // save vote for authorised user
             $.post($frm.attr('action'), $frm.serialize(), function(response) {
-                console.log(response);
+                if(response.error == 0) {
+                    location.href = response.redirect_url;
+                }
+            }, 'json');
+        } else {
+            // save vote in session for unauthorised user
+            $.post($frm.attr('action'), $frm.serialize() + '&auth_method=' + authMethod, function(response) {
+                if(response.error == 0) {
+                    location.href = response.redirect_url;
+                }
             }, 'json');
         }
 

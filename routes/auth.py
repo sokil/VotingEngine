@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, redirect, render_template_string, request
+from flask import Blueprint, current_app, redirect, render_template_string, request, url_for
 from flask_login import login_required, login_user, logout_user
 
 auth = Blueprint('auth', __name__)
@@ -58,4 +58,10 @@ def auth_check(auth_method):
         # authorize
         login_user(user_instance)
 
-    return render_template_string('hhh')
+    return redirect(url_for('vote.vote_session_save'))
+
+
+@auth.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
