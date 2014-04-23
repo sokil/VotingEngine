@@ -34,7 +34,7 @@ from models.user import User
 # Login manager
 from flask_login import LoginManager
 loginManager = LoginManager()
-loginManager.login_view = 'auth.login'
+loginManager.login_view = 'auth.auth_login'
 loginManager.init_app(app)
 
 @loginManager.user_loader

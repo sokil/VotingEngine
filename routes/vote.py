@@ -44,7 +44,10 @@ def vote_save(voting_id=None):
             if 'auth_method' not in request.form:
                 raise Exception('Auth method not specified')
 
-            response['redirect_url'] = url_for('auth.auth_form', auth_method=request.form.get('auth_method'))
+            response['redirect_url'] = url_for('auth.auth_form',
+                auth_method=request.form.get('auth_method'),
+                return_url=url_for('vote.vote_session_save')
+            )
 
     except Exception, e:
         response['error'] = 1

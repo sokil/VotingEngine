@@ -1,8 +1,11 @@
-from flask import Blueprint, current_app, redirect, render_template_string, request, url_for
+from flask import Blueprint, current_app, redirect, render_template, request, url_for, session
 from flask_login import login_required, login_user, logout_user
 
 auth = Blueprint('auth', __name__)
 
+@auth.route('/login')
+def auth_login():
+    return render_template('auth_login.html')
 
 @auth.route('/auth/form/<auth_method>')
 def auth_form(auth_method):
@@ -17,6 +20,10 @@ def auth_form(auth_method):
 
     else:
         raise Exception('Wrong auth method')
+
+    # define return url
+    if 'return_url' in request.args:
+        session['return_url'] = request.args.get('return_url')
 
     return redirect(auth_url)
 
@@ -58,10 +65,13 @@ def auth_check(auth_method):
         # authorize
         login_user(user_instance)
 
-    return redirect(url_for('vote.vote_session_save'))
+    # return
+    return_url = session.get('return_url') if session.has_key('return_url') else '/'
+    return redirect(return_url)
 
 
 @auth.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect('/')

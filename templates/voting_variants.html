@@ -11,7 +11,9 @@
                 <h4 class="modal-title">{{ _('Sign in') }}</h4>
             </div>
             <div class="modal-body">
+                {% if config.AUTH_VKONTAKTE %}
                 <a href="javascript:void(0);" data-auth-method="vkontakte" class="btn btn-default btn-social btn-social-vk">Вконтакте</a>
+                {% endif %}
                 {#
                 <a href="javascript:void(0);" data-auth-method="facebook" class="btn btn-default btn-social btn-social-fb">Facebook</a>
                 <a href="javascript:void(0);" data-auth-method="twitter" class="btn btn-default btn-social btn-social-twitter">Twitter</a>

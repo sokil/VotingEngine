@@ -125,7 +125,20 @@ def voting_result(voting_id):
         flash(gettext(u'You must vote first to see results'))
         return redirect(url_for('voting.voting_variants', voting_id=voting_id))
 
-    # get variants with points
+    # Get points of variants
+    #
+    # SELECT voting_variant_id, SUM(point) AS rate
+    # FROM votes
+    # WHERE voting_id = 5
+    # GROUP BY voting_variant_id ORDER BY rate DESC
+    from models.vote import Vote
+    from sqlalchemy import func
+    Vote.query.filter_by(voting_id=voting_id)
+
+    # Get rates
+
+
+    # get variants
     from models.voting import Voting
 
     return render_template('voting_result.html')
