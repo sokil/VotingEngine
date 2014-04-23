@@ -1,7 +1,7 @@
 class Config(object):
     HOSTNAME = 'voting'
 
-    PORT = 9001
+    PORT = 9876
     DEBUG = True
 
     SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost/voting?charset=utf8'
