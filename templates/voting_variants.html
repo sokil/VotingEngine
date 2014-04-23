@@ -41,12 +41,10 @@
     <li>{{ voting['name'] }}</li>
 </ol>
 
-{% if not user.is_authenticated() %}
 <div class="btn-toolbar">
     <a href="{{ url_for('voting.variant_new', voting_id=voting.id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add variant') }}</a>
 </div>
 <hr>
-{% endif %}
 
 <h1>{{ voting['name'] }}</h1>
 
@@ -72,7 +70,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">
                     {{ _('Vote') }}
-                    <button type="submit" class="btn btn-danger btn-xs pull-right">
+                    <button type="submit" class="btn btn-danger btn-xs pull-right" style="display: none;">
                         <span class="glyphicon glyphicon-send"></span> {{ _('Vote') }}
                     </button>
                 </div>
@@ -86,19 +84,18 @@
 <script type="text/javascript">
     // sort votes
     $("#variants, #vote")
-        .sortable({
-          connectWith: ".votingPanel"
-        })
-        .disableSelection();
+    .sortable({
+        connectWith: ".votingPanel",
+        update: function(e, ui) {
+            $('#frmVote button[type=submit]').show()
+        }
+    })
+    .disableSelection();
 
     // send form
     $('#frmVote').submit(function(e) {
         e.preventDefault();
         var $frm = $(this);
-        if($('input[name="variant\[\]"]', $frm).length == 0) {
-            alert('{{ _('Choose some variants, please...') }}');
-            return false;
-        }
 
         // check auth
         var authMethod = $frm.data('auth-method');

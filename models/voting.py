@@ -8,7 +8,7 @@ class Voting(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(255))
 
-    variants = db.relationship("VotingVariant", backref="votings")
+    variants = db.relationship("VotingVariant", backref="votings", order_by="VotingVariant.title")
 
     def filter_invalid_variants(self, voted_variant_id_list):
         voted_variant_id_list = [int(variant_id) for variant_id in voted_variant_id_list]

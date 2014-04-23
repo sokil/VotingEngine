@@ -10,9 +10,8 @@ def vote_save(voting_id=None):
     response = {'error': 0}
 
     try:
-
-        # prepare vote
         from models.voting import Voting
+        from models.vote import Vote
 
         # get variants
         if 'variant[]' not in request.form:
@@ -23,9 +22,13 @@ def vote_save(voting_id=None):
 
         # check permission to save
         if current_user.is_authenticated():
+
+            # Check if user voted in this voting
+            if Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is not None:
+                raise Exception('User already voted in this voting')
+
             # save vote
             from app import db
-            from models.vote import Vote
             point = len(voting_instance.variants)
             for variant_id in variant_id_list:
                 db.session.add(Vote(voting_id=voting_id, voting_variant_id=variant_id, point=point, user_id=current_user.get_id()))
