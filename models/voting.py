@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey, func
 
 
 class Voting(db.Model):
@@ -21,3 +21,12 @@ class Voting(db.Model):
             raise Exception('Wrong variants specified')
 
         return variant_id_list
+
+    def get_voted_users_num(self):
+        from models.vote import Vote
+        result = db.session\
+            .query(func.count(func.distinct(Vote.user_id)))\
+            .filter_by(voting_id=self.id)\
+            .first()
+
+        return result[0] if len(result) > 0 else 0

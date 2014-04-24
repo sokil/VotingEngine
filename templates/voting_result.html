@@ -1,10 +1,21 @@
 {% extends "empty_layout.html" %}
 {% block title %} {{ voting['name'] }} :: {{ _('Voting results') }} :: {% endblock %}
 {% block body %}
-<ol class="breadcrumb">
-    <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
-    <li>{{ _('Voting results') }}</li>
-</ol>
+
+    <div class="row">
+        <div class="col-md-9">
+            <ol class="breadcrumb">
+                <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
+                <li>{{ _('Voting results') }}</li>
+            </ol>
+        </div>
+        <div class="col-md-3">
+            <p class="bg-warning" style="padding: 8px 15px;">
+                {{ _('Voted persons:') }} {{ voting.get_voted_users_num() }}
+            </p>
+        </div>
+    </div>
+
     <h1>{{ voting['name'] }}</h1>
     {% for vote in votes %}
         {{ vote.variant.title }} ({{ vote.percent }}%)
@@ -13,4 +24,5 @@
             </div>
         </div>
     {% endfor %}
+
 {% endblock %}

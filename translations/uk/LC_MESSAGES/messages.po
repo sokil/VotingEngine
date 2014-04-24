@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 22:33+0300\n"
-"PO-Revision-Date: 2014-04-24 23:19+0300\n"
+"POT-Creation-Date: 2014-04-24 23:54+0300\n"
+"PO-Revision-Date: 2014-04-24 23:54+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
 "Language-Team: uk <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
@@ -49,7 +49,7 @@ msgstr "Редагувати голосування"
 msgid "Voting editor"
 msgstr "Редактор голосування"
 
-#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:5
+#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:8
 #: ../../templates/voting_variant_edit.html:6
 #: ../../templates/voting_variants.html:40
 msgid "Votings"
@@ -80,9 +80,13 @@ msgstr "Список голосувань"
 msgid "Available votings"
 msgstr "Голосування"
 
-#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:6
+#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:9
 msgid "Voting results"
 msgstr "Результати голосування"
+
+#: ../../templates/voting_result.html:14
+msgid "Voted persons:"
+msgstr "Проголосувало:"
 
 #: ../../templates/voting_variant_edit.html:2
 msgid "Edit voting variant"

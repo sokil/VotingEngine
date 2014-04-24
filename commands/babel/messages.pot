@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 22:33+0300\n"
+"POT-Creation-Date: 2014-04-24 23:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Voting editor"
 msgstr ""
 
-#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:5
+#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:8
 #: ../../templates/voting_variant_edit.html:6
 #: ../../templates/voting_variants.html:40
 msgid "Votings"
@@ -77,8 +77,12 @@ msgstr ""
 msgid "Available votings"
 msgstr ""
 
-#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:6
+#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:9
 msgid "Voting results"
+msgstr ""
+
+#: ../../templates/voting_result.html:14
+msgid "Voted persons:"
 msgstr ""
 
 #: ../../templates/voting_variant_edit.html:2
