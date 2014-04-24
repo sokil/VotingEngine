@@ -68,6 +68,7 @@ def vote_session_save():
 
     # prepare vote
     from models.voting import Voting
+    from models.vote import Vote
 
     # get variants
     if 'vote' not in session:
@@ -77,6 +78,10 @@ def vote_session_save():
 
     voting_instance = Voting.query.get(voting_id)
     variant_id_list = session['vote']['variants']
+
+    # Check if user voted in this voting
+    if Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is not None:
+        return redirect(url_for('voting.voting_result', voting_id=voting_id))
 
     # save vote
     from app import db
