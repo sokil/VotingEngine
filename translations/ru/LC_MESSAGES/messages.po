@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-24 23:54+0300\n"
-"PO-Revision-Date: 2014-04-25 00:03+0300\n"
+"POT-Creation-Date: 2014-04-25 00:18+0300\n"
+"PO-Revision-Date: 2014-04-25 00:19+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
@@ -32,12 +32,12 @@ msgstr "Авторизация"
 msgid "Voting"
 msgstr "Голосование"
 
-#: ../../templates/empty_layout.html:28
+#: ../../templates/empty_layout.html:30
 msgid "Sign out"
 msgstr "Выход"
 
-#: ../../templates/empty_layout.html:30
-#: ../../templates/voting_variants.html:11
+#: ../../templates/empty_layout.html:32
+#: ../../templates/voting_variants.html:18
 msgid "Sign in"
 msgstr "Вход"
 
@@ -49,9 +49,9 @@ msgstr "Редактировать голосование"
 msgid "Voting editor"
 msgstr "Редактор голосований"
 
-#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:8
+#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:16
 #: ../../templates/voting_variant_edit.html:6
-#: ../../templates/voting_variants.html:40
+#: ../../templates/voting_variants.html:47
 msgid "Votings"
 msgstr "Голосования"
 
@@ -80,11 +80,17 @@ msgstr "Список голосований"
 msgid "Available votings"
 msgstr "Голосования"
 
-#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:9
+#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:17
 msgid "Voting results"
 msgstr "Результаты голосования"
 
-#: ../../templates/voting_result.html:14
+#: ../../templates/voting_result.html:4 ../../templates/voting_result.html:9
+#: ../../templates/voting_variants.html:4
+#: ../../templates/voting_variants.html:9
+msgid "Leave your vote in on-line voting."
+msgstr "Оставьте свой голос в он-лайн голосовании."
+
+#: ../../templates/voting_result.html:22
 msgid "Voted persons:"
 msgstr "Проголосовало:"
 
@@ -97,7 +103,7 @@ msgid "Voting variant editor"
 msgstr "Редактор вариантов голосования"
 
 #: ../../templates/voting_variant_edit.html:8
-#: ../../templates/voting_variants.html:46
+#: ../../templates/voting_variants.html:53
 msgid "Add variant"
 msgstr "Добавить вариант"
 
@@ -117,23 +123,23 @@ msgstr "Описание"
 msgid "Variant description"
 msgstr "Описание варианта"
 
-#: ../../templates/voting_variants.html:24
+#: ../../templates/voting_variants.html:31
 msgid "Close"
 msgstr "Закрыть"
 
-#: ../../templates/voting_variants.html:56
+#: ../../templates/voting_variants.html:63
 msgid "Variants"
 msgstr "Варианты"
 
-#: ../../templates/voting_variants.html:74
-#: ../../templates/voting_variants.html:76
+#: ../../templates/voting_variants.html:81
+#: ../../templates/voting_variants.html:83
 msgid "Vote"
 msgstr "Проголосовать"
 
-#: ../../templates/voting_variants.html:86
+#: ../../templates/voting_variants.html:93
 msgid "Drop variants in order of your favour"
 msgstr "Перетащите варианты в порядке вашего предпочтения"
 
-#: ../../templates/voting_variants.html:87
+#: ../../templates/voting_variants.html:94
 msgid "Skip variants you don't want to vote for"
 msgstr "Не перетаскивайте варианты, за которые вы не хотите голосовать"
