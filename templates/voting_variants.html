@@ -71,7 +71,7 @@
         <form id="frmVote" method="post" action="{{ url_for('vote.vote_save', voting_id=voting['id']) }}" data-auth-method="{{ user.is_authenticated() }}">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    {{ _('Vote') }} ({{ _('Drop variants on order of your favour') }})
+                    {{ _('Vote') }}
                     <button type="submit" class="btn btn-danger btn-xs pull-right" style="display: none;">
                         <span class="glyphicon glyphicon-send"></span> {{ _('Vote') }}
                     </button>
@@ -81,6 +81,11 @@
                 </ul>
             </div>
         </form>
+
+        <ul class="bg-info" style="padding: 10px 50px;">
+            <li>{{ _('Drop variants in order of your favour') }}</li>
+            <li>{{ _('Skip variants you don\'t want to vote for') }}</li>
+        </ul>
     </div>
 </div>
 
