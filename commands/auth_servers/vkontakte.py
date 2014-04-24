@@ -75,4 +75,7 @@ def method():
         return render_template_string('Forbidden'), 403
 
 # run server
-app.run('127.0.0.1', 9876, True)
+from sys import argv
+port = int(argv[1]) if len(argv) > 1 else 9877
+
+app.run('127.0.0.1', port, True)
