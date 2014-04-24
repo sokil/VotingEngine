@@ -1,0 +1,135 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-04-24 22:33+0300\n"
+"PO-Revision-Date: 2014-04-24 22:53+0300\n"
+"Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../../routes/voting.py:160
+msgid "You must vote first to see results"
+msgstr "Чтобы увидеть результат вы должны проголосовать"
+
+#: ../../templates/auth_login.html:2
+msgid "Authorisation"
+msgstr "Авторизация"
+
+#: ../../templates/empty_layout.html:4
+#: ../../templates/voting_variant_edit.html:7
+msgid "Voting"
+msgstr "Голосование"
+
+#: ../../templates/empty_layout.html:28
+msgid "Sign out"
+msgstr "Выход"
+
+#: ../../templates/empty_layout.html:30
+#: ../../templates/voting_variants.html:11
+msgid "Sign in"
+msgstr "Вход"
+
+#: ../../templates/voting_edit.html:2
+msgid "Edit voting"
+msgstr "Редактировать голосование"
+
+#: ../../templates/voting_edit.html:4
+msgid "Voting editor"
+msgstr "Редактор голосований"
+
+#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:5
+#: ../../templates/voting_variant_edit.html:6
+#: ../../templates/voting_variants.html:40
+msgid "Votings"
+msgstr "Голосования"
+
+#: ../../templates/voting_edit.html:7 ../../templates/voting_list.html:6
+msgid "Add voting"
+msgstr "Добавить голосование"
+
+#: ../../templates/voting_edit.html:12 ../../templates/voting_list.html:10
+msgid "Name"
+msgstr "Название"
+
+#: ../../templates/voting_edit.html:13
+msgid "Voting name"
+msgstr "Название голосования"
+
+#: ../../templates/voting_edit.html:16
+#: ../../templates/voting_variant_edit.html:29
+msgid "Save"
+msgstr "Сохранить"
+
+#: ../../templates/voting_list.html:2
+msgid "Voting list"
+msgstr "Список голосований"
+
+#: ../../templates/voting_list.html:4
+msgid "Available votings"
+msgstr "Доступные голосования"
+
+#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:6
+msgid "Voting results"
+msgstr "Результаты голосования"
+
+#: ../../templates/voting_variant_edit.html:2
+msgid "Edit voting variant"
+msgstr "Редактировать вариант голосования"
+
+#: ../../templates/voting_variant_edit.html:4
+msgid "Voting variant editor"
+msgstr "Редактор вариантов голосования"
+
+#: ../../templates/voting_variant_edit.html:8
+#: ../../templates/voting_variants.html:46
+msgid "Add variant"
+msgstr "Добавить вариант"
+
+#: ../../templates/voting_variant_edit.html:18
+msgid "Title"
+msgstr "Название"
+
+#: ../../templates/voting_variant_edit.html:19
+msgid "Variant title"
+msgstr "Название варианта"
+
+#: ../../templates/voting_variant_edit.html:23
+msgid "Description"
+msgstr "Описание"
+
+#: ../../templates/voting_variant_edit.html:24
+msgid "Variant description"
+msgstr "Описание варианта"
+
+#: ../../templates/voting_variants.html:24
+msgid "Close"
+msgstr "Закрыть"
+
+#: ../../templates/voting_variants.html:56
+msgid "Variants"
+msgstr "Варианты"
+
+#: ../../templates/voting_variants.html:74
+#: ../../templates/voting_variants.html:76
+msgid "Vote"
+msgstr "Голос"
+
+#: ../../templates/voting_variants.html:86
+msgid "Drop variants in order of your favour"
+msgstr "Перетащите варианты в порядке вашего предпочтения"
+
+#: ../../templates/voting_variants.html:87
+msgid "Skip variants you don't want to vote for"
+msgstr "Не перетаскивайте варианты, за которые вы не хотите голосовать"

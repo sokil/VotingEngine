@@ -1,0 +1,136 @@
+# Ukrainian translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-04-24 22:33+0300\n"
+"PO-Revision-Date: 2014-04-24 22:48+0300\n"
+"Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
+"Language-Team: uk <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../../routes/voting.py:160
+msgid "You must vote first to see results"
+msgstr "Вам необхідно проголосувати щоб побачити результати"
+
+#: ../../templates/auth_login.html:2
+msgid "Authorisation"
+msgstr "Авторизація"
+
+#: ../../templates/empty_layout.html:4
+#: ../../templates/voting_variant_edit.html:7
+msgid "Voting"
+msgstr "Голосування"
+
+#: ../../templates/empty_layout.html:28
+msgid "Sign out"
+msgstr "Вихід"
+
+#: ../../templates/empty_layout.html:30
+#: ../../templates/voting_variants.html:11
+msgid "Sign in"
+msgstr "Вхід"
+
+#: ../../templates/voting_edit.html:2
+msgid "Edit voting"
+msgstr "Редагувати голосування"
+
+#: ../../templates/voting_edit.html:4
+msgid "Voting editor"
+msgstr "Редактор голосування"
+
+#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:5
+#: ../../templates/voting_variant_edit.html:6
+#: ../../templates/voting_variants.html:40
+msgid "Votings"
+msgstr "Голосування"
+
+#: ../../templates/voting_edit.html:7 ../../templates/voting_list.html:6
+msgid "Add voting"
+msgstr "Додати голосування"
+
+#: ../../templates/voting_edit.html:12 ../../templates/voting_list.html:10
+msgid "Name"
+msgstr "Назва"
+
+#: ../../templates/voting_edit.html:13
+msgid "Voting name"
+msgstr "Назва голосування"
+
+#: ../../templates/voting_edit.html:16
+#: ../../templates/voting_variant_edit.html:29
+msgid "Save"
+msgstr "Зберегти"
+
+#: ../../templates/voting_list.html:2
+msgid "Voting list"
+msgstr "Список голосувань"
+
+#: ../../templates/voting_list.html:4
+msgid "Available votings"
+msgstr "Оступні голосування"
+
+#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:6
+msgid "Voting results"
+msgstr "Результати голосування"
+
+#: ../../templates/voting_variant_edit.html:2
+msgid "Edit voting variant"
+msgstr "Редагувати варіанти голосування"
+
+#: ../../templates/voting_variant_edit.html:4
+msgid "Voting variant editor"
+msgstr "Редактор варіантів голосування"
+
+#: ../../templates/voting_variant_edit.html:8
+#: ../../templates/voting_variants.html:46
+msgid "Add variant"
+msgstr "Додати варіант"
+
+#: ../../templates/voting_variant_edit.html:18
+msgid "Title"
+msgstr "Назва"
+
+#: ../../templates/voting_variant_edit.html:19
+msgid "Variant title"
+msgstr "Назва варіанту"
+
+#: ../../templates/voting_variant_edit.html:23
+msgid "Description"
+msgstr "Опис"
+
+#: ../../templates/voting_variant_edit.html:24
+msgid "Variant description"
+msgstr "Опис варіанту"
+
+#: ../../templates/voting_variants.html:24
+msgid "Close"
+msgstr "Закрити"
+
+#: ../../templates/voting_variants.html:56
+msgid "Variants"
+msgstr "Варіанти"
+
+#: ../../templates/voting_variants.html:74
+#: ../../templates/voting_variants.html:76
+msgid "Vote"
+msgstr "Голос"
+
+#: ../../templates/voting_variants.html:86
+msgid "Drop variants in order of your favour"
+msgstr ""
+"Перемістіть варіанти голосування в порядку, в якому ви надаєте їм перевагу"
+
+#: ../../templates/voting_variants.html:87
+msgid "Skip variants you don't want to vote for"
+msgstr "Не перетягуйте варіанти, за які ви не хочете голосувати"
