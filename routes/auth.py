@@ -5,7 +5,12 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def auth_login():
-    return render_template('auth_login.html')
+    # define return url
+    return_url = request.args.get('next')
+    if return_url and return_url[0] != '/':
+        return_url = None
+
+    return render_template('auth_login.html', return_url=return_url)
 
 @auth.route('/auth/form/<auth_method>')
 def auth_form(auth_method):

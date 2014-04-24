@@ -41,10 +41,12 @@
     <li>{{ voting['name'] }}</li>
 </ol>
 
+{% if current_user.is_authenticated() and voting.owner == current_user %}
 <div class="btn-toolbar">
     <a href="{{ url_for('voting.variant_new', voting_id=voting.id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add variant') }}</a>
 </div>
 <hr>
+{% endif %}
 
 <h1>{{ voting['name'] }}</h1>
 
@@ -69,11 +71,12 @@
         <form id="frmVote" method="post" action="{{ url_for('vote.vote_save', voting_id=voting['id']) }}" data-auth-method="{{ user.is_authenticated() }}">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    {{ _('Vote') }}
+                    {{ _('Vote') }} ({{ _('Drop variants on order of your favour') }})
                     <button type="submit" class="btn btn-danger btn-xs pull-right" style="display: none;">
                         <span class="glyphicon glyphicon-send"></span> {{ _('Vote') }}
                     </button>
                 </div>
+
                 <ul id="vote" class="votingPanel list-group">
                 </ul>
             </div>
@@ -86,8 +89,19 @@
     $("#variants, #vote")
     .sortable({
         connectWith: ".votingPanel",
+        placeholder: 'drop-placeholder',
+        helper: function(e, elem) {
+            console.log(elem);
+            return elem.clone().addClass('drag-helper');
+        },
         update: function(e, ui) {
-            $('#frmVote button[type=submit]').show()
+            if($('#vote li').length) {
+                $('#frmVote button[type=submit]').show();
+            }
+            else {
+                $('#frmVote button[type=submit]').hide()
+            }
+
         }
     })
     .disableSelection();

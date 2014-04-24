@@ -1,14 +1,16 @@
 from app import db
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, ForeignKey
 
 
 class Voting(db.Model):
     __tablename__ = 'votings'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(255))
+    name = Column(String(255), nullable=False)
+    owner_id = Column(Integer, ForeignKey('users.id'), nullable=False)
 
     variants = db.relationship("VotingVariant", backref="votings", order_by="VotingVariant.title")
+    owner = db.relationship('User')
 
     def filter_invalid_variants(self, voted_variant_id_list):
         voted_variant_id_list = [int(variant_id) for variant_id in voted_variant_id_list]

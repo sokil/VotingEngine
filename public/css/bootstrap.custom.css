@@ -42,3 +42,16 @@
 {
     background-image: url(/images/social/google.png)
 }
+
+.drop-placeholder
+{
+    border: 3px dashed #efefef;
+    margin: 10px;
+    height: 60px;
+}
+
+.drag-helper
+{
+    border: 1px solid #dddddd !important;
+    border-radius: 3px !important;
+}

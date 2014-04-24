@@ -2,7 +2,7 @@
 {% block title %} {{ _('Authorisation') }} :: {% endblock %}
 {% block body %}
     {% if config.AUTH_VKONTAKTE %}
-    <a href="{{ url_for('auth.auth_form', auth_method='vkontakte') }}" class="btn btn-default btn-social btn-social-vk">Вконтакте</a>
+    <a href="{{ url_for('auth.auth_form', auth_method='vkontakte', return_url=return_url) }}" class="btn btn-default btn-social btn-social-vk">Вконтакте</a>
     {% endif %}
     {#
     <a href="javascript:void(0);" data-auth-method="facebook" class="btn btn-default btn-social btn-social-fb">Facebook</a>

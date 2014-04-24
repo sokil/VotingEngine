@@ -13,7 +13,8 @@ class User(db.Model):
     salt = Column(String(255))
     vkontakte_id = Column(Integer, index=True)
 
-    votes = db.relationship("Vote", backref="persons")
+    votings = db.relationship('Voting', backref="users")
+    votes = db.relationship("Vote", backref="users")
 
     def is_authenticated(self):
         return True

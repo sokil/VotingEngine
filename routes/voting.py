@@ -19,13 +19,15 @@ Voting editor
 """
 @voting.route('/voting/new')
 @voting.route('/voting/edit/<voting_id>')
+@login_required
 def voting_edit(voting_id=None):
 
     from models.voting import Voting
     if voting_id:
         voting_instance = Voting.query.get(voting_id)
     else:
-        voting_instance = Voting()
+        from flask_login import current_user
+        voting_instance = Voting(owner_id=current_user.get_id())
 
     return render_template('voting_edit.html', voting=voting_instance)
 
@@ -52,15 +54,17 @@ def voting_variants(voting_id):
 
 
 """
-Save vote
+Save voting
 """
 @voting.route('/voting/save', methods=['POST'])
+@login_required
 def voting_save():
     from models.voting import Voting
     if request.form.get('id'):
         voting_instance = Voting.query.get(request.form.get('id'))
     else:
-        voting_instance = Voting()
+        from flask_login import current_user
+        voting_instance = Voting(owner_id=current_user.get_id())
 
     voting_instance.name = unicode(request.form['name'])
 
@@ -74,8 +78,19 @@ def voting_save():
 New voting variant
 """
 @voting.route('/voting/<voting_id>/new_variant')
+@login_required
 def variant_new(voting_id=None):
 
+    # get voting
+    from models.voting import Voting
+    voting_instance = Voting.query.get(voting_id)
+
+    # check owner
+    from flask_login import current_user
+    if current_user != voting_instance.owner:
+        raise Exception('Not allowed to edit voting')
+
+    # create variant
     from models.voting_variant import VotingVariant
     variant_instance = VotingVariant(voting_id=voting_id)
 
@@ -86,10 +101,20 @@ def variant_new(voting_id=None):
 Edit voting variant
 """
 @voting.route('/voting/edit_variant/<variant_id>')
+@login_required
 def variant_edit(variant_id=None):
 
+    # get variant
     from models.voting_variant import VotingVariant
     variant_instance = VotingVariant.query.get(variant_id)
+
+    # get voting
+    voting_instance = variant_instance.voting
+
+    # check owner
+    from flask_login import current_user
+    if current_user != voting_instance.owner:
+        raise Exception('Not allowed to edit voting')
 
     return render_template('voting_variant_edit.html', variant=variant_instance)
 
@@ -98,6 +123,7 @@ def variant_edit(variant_id=None):
 Save voting variant
 """
 @voting.route('/voting/save_variant', methods=['POST'])
+@login_required
 def variant_save():
 
     from models.voting_variant import VotingVariant
