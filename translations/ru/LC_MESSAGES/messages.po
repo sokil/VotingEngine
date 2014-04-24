@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-04-24 23:54+0300\n"
-"PO-Revision-Date: 2014-04-24 23:54+0300\n"
+"PO-Revision-Date: 2014-04-25 00:03+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
@@ -128,7 +128,7 @@ msgstr "Варианты"
 #: ../../templates/voting_variants.html:74
 #: ../../templates/voting_variants.html:76
 msgid "Vote"
-msgstr "Голос"
+msgstr "Проголосовать"
 
 #: ../../templates/voting_variants.html:86
 msgid "Drop variants in order of your favour"
