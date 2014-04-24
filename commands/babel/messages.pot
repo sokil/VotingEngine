@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-10 19:00+0300\n"
+"POT-Creation-Date: 2014-04-24 22:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,91 +17,117 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: ../../routes/auth.py:16
-msgid "Email wrong"
+#: ../../routes/voting.py:160
+msgid "You must vote first to see results"
 msgstr ""
 
-#: ../../routes/auth.py:20
-msgid "Password wrong"
+#: ../../templates/auth_login.html:2
+msgid "Authorisation"
 msgstr ""
 
-#: ../../templates/distributive_edit.html:5
-#: ../../templates/distributive_list.html:6
-#: ../../templates/environment_edit.html:5
-#: ../../templates/environment_list.html:3
-msgid "Environment"
+#: ../../templates/empty_layout.html:4
+#: ../../templates/voting_variant_edit.html:7
+msgid "Voting"
 msgstr ""
 
-#: ../../templates/distributive_edit.html:6
-#: ../../templates/distributive_list.html:7
-#, python-format
-msgid "Distributives of environment \"%(name)s\""
+#: ../../templates/empty_layout.html:28
+msgid "Sign out"
 msgstr ""
 
-#: ../../templates/distributive_edit.html:18
-#: ../../templates/distributive_list.html:17
-msgid "Version"
-msgstr ""
-
-#: ../../templates/distributive_edit.html:23
-msgid "File"
-msgstr ""
-
-#: ../../templates/distributive_edit.html:26
-#: ../../templates/distributive_list.html:16
-msgid "Url"
-msgstr ""
-
-#: ../../templates/distributive_edit.html:30
-#: ../../templates/environment_edit.html:17 ../../templates/user_edit.html:22
-msgid "Save"
-msgstr ""
-
-#: ../../templates/distributive_list.html:11
-#: ../../templates/environment_list.html:5 ../../templates/user_list.html:5
-msgid "Add"
-msgstr ""
-
-#: ../../templates/empty_layout.html:4 ../../templates/menu_layout.html:4
-msgid "Distributive manager"
-msgstr ""
-
-#: ../../templates/environment_edit.html:6 ../../templates/user_edit.html:6
-msgid "Editor"
-msgstr ""
-
-#: ../../templates/environment_edit.html:13
-#: ../../templates/environment_list.html:9
-msgid "Name"
-msgstr ""
-
-#: ../../templates/environment_edit.html:14
-msgid "Environment name"
-msgstr ""
-
-#: ../../templates/login.html:8 ../../templates/user_edit.html:13
-#: ../../templates/user_list.html:10
-msgid "E-mail"
-msgstr ""
-
-#: ../../templates/login.html:14 ../../templates/user_edit.html:18
-msgid "Password"
-msgstr ""
-
-#: ../../templates/login.html:18
+#: ../../templates/empty_layout.html:30 ../../templates/voting_variants.html:11
 msgid "Sign in"
 msgstr ""
 
-#: ../../templates/menu_layout.html:13
-msgid "Distributives"
+#: ../../templates/voting_edit.html:2
+msgid "Edit voting"
 msgstr ""
 
-#: ../../templates/menu_layout.html:14 ../../templates/user_edit.html:5
-#: ../../templates/user_list.html:3
-msgid "Users"
+#: ../../templates/voting_edit.html:4
+msgid "Voting editor"
 msgstr ""
 
-#: ../../templates/menu_layout.html:15
-msgid "Sign out"
+#: ../../templates/voting_edit.html:6 ../../templates/voting_result.html:5
+#: ../../templates/voting_variant_edit.html:6
+#: ../../templates/voting_variants.html:40
+msgid "Votings"
+msgstr ""
+
+#: ../../templates/voting_edit.html:7 ../../templates/voting_list.html:6
+msgid "Add voting"
+msgstr ""
+
+#: ../../templates/voting_edit.html:12 ../../templates/voting_list.html:10
+msgid "Name"
+msgstr ""
+
+#: ../../templates/voting_edit.html:13
+msgid "Voting name"
+msgstr ""
+
+#: ../../templates/voting_edit.html:16
+#: ../../templates/voting_variant_edit.html:29
+msgid "Save"
+msgstr ""
+
+#: ../../templates/voting_list.html:2
+msgid "Voting list"
+msgstr ""
+
+#: ../../templates/voting_list.html:4
+msgid "Available votings"
+msgstr ""
+
+#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:6
+msgid "Voting results"
+msgstr ""
+
+#: ../../templates/voting_variant_edit.html:2
+msgid "Edit voting variant"
+msgstr ""
+
+#: ../../templates/voting_variant_edit.html:4
+msgid "Voting variant editor"
+msgstr ""
+
+#: ../../templates/voting_variant_edit.html:8
+#: ../../templates/voting_variants.html:46
+msgid "Add variant"
+msgstr ""
+
+#: ../../templates/voting_variant_edit.html:18
+msgid "Title"
+msgstr ""
+
+#: ../../templates/voting_variant_edit.html:19
+msgid "Variant title"
+msgstr ""
+
+#: ../../templates/voting_variant_edit.html:23
+msgid "Description"
+msgstr ""
+
+#: ../../templates/voting_variant_edit.html:24
+msgid "Variant description"
+msgstr ""
+
+#: ../../templates/voting_variants.html:24
+msgid "Close"
+msgstr ""
+
+#: ../../templates/voting_variants.html:56
+msgid "Variants"
+msgstr ""
+
+#: ../../templates/voting_variants.html:74
+#: ../../templates/voting_variants.html:76
+msgid "Vote"
+msgstr ""
+
+#: ../../templates/voting_variants.html:86
+msgid "Drop variants in order of your favour"
+msgstr ""
+
+#: ../../templates/voting_variants.html:87
+msgid "Skip variants you don't want to vote for"
 msgstr ""
 
