@@ -1,5 +1,13 @@
 {% extends "empty_layout.html" %}
 {% block title %} {{ voting['name'] }} :: {{ _('Voting results') }} :: {% endblock %}
+{% block meta %}
+<meta name="description" content="{{ voting['name'] }}. {{_('Leave your vote in on-line voting.') }}">
+<meta property="og:type"   content="website">
+<meta property="og:image" content="http://{{ config['HOSTNAME'] }}/images/ico.png">
+<meta property="og:title" content="{{ voting['name'] }}">
+<meta property="og:url" content="http://{{ config['HOSTNAME'] }}/">
+<meta property="og:description" content="{{_('Leave your vote in on-line voting.') }}">
+{% endblock %}
 {% block body %}
 
     <div class="row">
