@@ -136,7 +136,7 @@ def variant_save():
 
         variant_instance = VotingVariant(voting_id=request.form['voting_id'])
 
-    variant_instance.title = request.form['title']
+    variant_instance.title = request.form['title'].strip()
     variant_instance.description = request.form['description']
 
     from app import db
