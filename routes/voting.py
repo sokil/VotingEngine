@@ -143,7 +143,7 @@ def variant_save():
     db.session.add(variant_instance)
     db.session.commit()
 
-    return redirect(url_for('voting.voting_variants', variant_id=variant_instance.id))
+    return redirect(url_for('voting.voting_variants', voting_id=variant_instance.voting_id))
 
 
 """
