@@ -5,3 +5,4 @@ public/dist/*
 configs/nginx/production.conf
 configs/production.py
 virtualenv/*
+commands/start_server.sh
