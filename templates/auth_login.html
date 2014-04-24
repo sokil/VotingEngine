@@ -1,12 +1,15 @@
 {% extends "empty_layout.html" %}
 {% block title %} {{ _('Authorisation') }} :: {% endblock %}
 {% block body %}
-    {% if config.AUTH_VKONTAKTE %}
-    <a href="{{ url_for('auth.auth_form', auth_method='vkontakte', return_url=return_url) }}" class="btn btn-default btn-social btn-social-vk">Вконтакте</a>
-    {% endif %}
-    {#
-    <a href="javascript:void(0);" data-auth-method="facebook" class="btn btn-default btn-social btn-social-fb">Facebook</a>
-    <a href="javascript:void(0);" data-auth-method="twitter" class="btn btn-default btn-social btn-social-twitter">Twitter</a>
-    <a href="javascript:void(0);" data-auth-method="google" class="btn btn-default btn-social btn-social-google">Google</a>
-    #}
+    <div style="margin-top: 200px; text-align: center;">
+        <p>{{ _('Select authorization provider through which you would like to sign in').upper() }}:</p>
+        {% if config.AUTH_VKONTAKTE %}
+        <a href="{{ url_for('auth.auth_form', auth_method='vkontakte', return_url=return_url) }}" class="btn btn-default btn-social btn-social-vk">Вконтакте</a>
+        {% endif %}
+        {#
+        <a href="javascript:void(0);" data-auth-method="facebook" class="btn btn-default btn-social btn-social-fb">Facebook</a>
+        <a href="javascript:void(0);" data-auth-method="twitter" class="btn btn-default btn-social btn-social-twitter">Twitter</a>
+        <a href="javascript:void(0);" data-auth-method="google" class="btn btn-default btn-social btn-social-google">Google</a>
+        #}
+    </div>
 {% endblock %}

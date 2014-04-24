@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-25 00:18+0300\n"
-"PO-Revision-Date: 2014-04-25 00:19+0300\n"
+"POT-Creation-Date: 2014-04-25 01:10+0300\n"
+"PO-Revision-Date: 2014-04-25 01:11+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
 "Language-Team: uk <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
@@ -27,16 +27,20 @@ msgstr "Вам необхідно проголосувати щоб побачи
 msgid "Authorisation"
 msgstr "Авторизація"
 
+#: ../../templates/auth_login.html:5
+msgid "Select authorization provider through which you would like to sign in"
+msgstr "Вкажіть, з допомогою якого сервісу ви хочете авторизуватись"
+
 #: ../../templates/empty_layout.html:4
 #: ../../templates/voting_variant_edit.html:7
 msgid "Voting"
 msgstr "Голосування"
 
-#: ../../templates/empty_layout.html:30
+#: ../../templates/empty_layout.html:32
 msgid "Sign out"
 msgstr "Вихід"
 
-#: ../../templates/empty_layout.html:32
+#: ../../templates/empty_layout.html:34
 #: ../../templates/voting_variants.html:18
 msgid "Sign in"
 msgstr "Вхід"
