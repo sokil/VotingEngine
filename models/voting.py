@@ -8,6 +8,7 @@ class Voting(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
     owner_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    country = Column(String(2))
 
     variants = db.relationship("VotingVariant", backref="votings", order_by="VotingVariant.title")
     owner = db.relationship('User')

@@ -5,3 +5,4 @@ Flask-SQLAlchemy
 MySQL-python
 sqlalchemy-migrate
 pygeoip
+pycountry

@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, current_app, redirect, session, url_for, flash
 from flask_login import login_required
-from flask_babel import gettext
 
 voting = Blueprint('voting', __name__)
 
@@ -29,7 +28,10 @@ def voting_edit(voting_id=None):
         from flask_login import current_user
         voting_instance = Voting(owner_id=current_user.get_id())
 
-    return render_template('voting_edit.html', voting=voting_instance)
+    # get country list
+    from pycountry import countries
+
+    return render_template('voting_edit.html', voting=voting_instance, countries=countries)
 
 
 """
@@ -67,6 +69,9 @@ def voting_save():
         voting_instance = Voting(owner_id=current_user.get_id())
 
     voting_instance.name = unicode(request.form['name'])
+
+    if request.form.get('country'):
+        voting_instance.country = unicode(request.form['country'])
 
     from app import db
     db.session.add(voting_instance)
@@ -157,6 +162,7 @@ def voting_result(voting_id):
     from models.vote import Vote
     from flask_login import current_user
     if Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is None:
+        from flask_babel import gettext
         flash(gettext(u'You must vote first to see results'))
         return redirect(url_for('voting.voting_variants', voting_id=voting_id))
 

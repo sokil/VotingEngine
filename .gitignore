@@ -4,5 +4,6 @@ public/dist/*
 .idea
 configs/nginx/production.conf
 configs/production.py
+configs/geoip/*
 virtualenv/*
 commands/start_server.sh

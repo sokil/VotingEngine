@@ -13,6 +13,15 @@
         <input type="text" class="form-control" name="name" placeholder="{{ _('Voting name') }}" value="{{ voting.name|default('', true) }}" autocomplete="off">
     </div>
     <div class="form-group">
+        <label>{{ _('Country') }}</label>
+        <select class="form-control" name="country">
+            <option value="">{{ _('All countries') }}</option>
+            {% for country in countries %}
+            <option value="{{ country.alpha2 }}"{% if country.alpha2 == voting.country %} selected="selected"{% endif %}>{{ country.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
         <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />
     </div>
 </form>
