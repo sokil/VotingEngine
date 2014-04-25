@@ -30,3 +30,9 @@ class Voting(db.Model):
             .first()
 
         return result[0] if len(result) > 0 else 0
+
+    def is_owned_by(self, user):
+        return user.get_id() == self.owner_id
+
+    def is_moderated_by(self, user):
+        return user.has_role('moderator') or self.is_owned_by(user)

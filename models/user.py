@@ -10,6 +10,7 @@ class User(db.Model):
     id = Column(Integer, primary_key=True)
     email = Column(String(255), index=True)
     password = Column(String(255))
+    role = Column(String(30), default='user')
     salt = Column(String(255))
     vkontakte_id = Column(Integer, index=True)
 
@@ -27,6 +28,9 @@ class User(db.Model):
 
     def get_id(self):
         return self.id
+
+    def has_role(self, role):
+        return role == self.role
 
     def set_password(self, password):
         # generate salt

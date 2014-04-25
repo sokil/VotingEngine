@@ -6,12 +6,21 @@
         <a href="/voting/new" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add voting') }}</a>
     </div>
 <table class="table table-striped">
+    <col/><col width="100px"/><col width="30px">
     <tr>
         <th>{{ _('Name') }}</th>
+        <th>{{ _('Voted') }}</th>
+        <th></th>
     </tr>
     {% for voting in voting_list %}
     <tr>
         <td><a href="{{ url_for('voting.voting_variants', voting_id=voting['id']) }}">{{ voting['name'] }}</a></td>
+        <td>{{ voting.get_voted_users_num() }}</td>
+        <td>
+            {% if voting.is_moderated_by(current_user) %}
+            <a href="{{ url_for('voting.voting_edit', voting_id=voting.id) }}" class="btn btn-success btn-xs" title="{{ _('Edit') }}"><span class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
+        </td>
     </tr>
     {% endfor %}
 </table>
