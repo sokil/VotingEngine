@@ -33,11 +33,12 @@ from models.user import User
 
 # Login manager
 from flask_login import LoginManager
-loginManager = LoginManager()
-loginManager.login_view = 'auth.auth_login'
-loginManager.init_app(app)
+login_manager = LoginManager()
+login_manager.login_view = 'auth.auth_login'
+login_manager.anonymous_user = User
+login_manager.init_app(app)
 
-@loginManager.user_loader
+@login_manager.user_loader
 def load_user(id):
     return User.query.get(id)
 

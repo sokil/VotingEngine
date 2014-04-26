@@ -18,13 +18,13 @@ class User(db.Model):
     votes = db.relationship("Vote", backref="users")
 
     def is_authenticated(self):
-        return True
+        return bool(self.get_id())
 
     def is_active(self):
         return True
 
     def is_anonymous(self):
-        return False
+        return not self.is_authenticated()
 
     def get_id(self):
         return self.id

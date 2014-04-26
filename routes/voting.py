@@ -9,9 +9,19 @@ Voting list
 @voting.route("/")
 def voting_list():
     from models.voting import Voting
-    voting_list = Voting.query.all()
+    from sqlalchemy import or_
 
-    return render_template('voting_list.html', voting_list=voting_list)
+    query = Voting.query
+
+    # get code of current country
+    if request.remote_addr != '127.0.0.1':
+        import pygeoip
+        geoip = pygeoip.GeoIP('./configs/geoip/GeoIP.dat')
+        alpha2 = geoip.country_code_by_addr(request.remote_addr)
+
+        query.filter(or_(Voting.country.is_(None), Voting.country.is_(alpha2)))
+
+    return render_template('voting_list.html', voting_list=query.all())
 
 """
 Voting editor
@@ -24,6 +34,11 @@ def voting_edit(voting_id=None):
     from models.voting import Voting
     if voting_id:
         voting_instance = Voting.query.get(voting_id)
+
+        # check permissions to edit
+        from flask_login import current_user
+        if not voting_instance.is_moderated_by(current_user):
+            raise Exception('You are not allowed to moderate this voting')
     else:
         from flask_login import current_user
         voting_instance = Voting(owner_id=current_user.get_id())
@@ -52,6 +67,10 @@ def voting_variants(voting_id):
     from models.voting import Voting
     voting_instance = Voting.query.get(voting_id)
 
+    # check if allowed in current country
+    if not voting_instance.is_allowed_for_country():
+        raise Exception('This voting not allowed in your country')
+
     return render_template('voting_variants.html', voting=voting_instance, user=current_user)
 
 
@@ -62,10 +81,15 @@ Save voting
 @login_required
 def voting_save():
     from models.voting import Voting
+    from flask_login import current_user
+
     if request.form.get('id'):
         voting_instance = Voting.query.get(request.form.get('id'))
+
+        # check permissions to edit
+        if not voting_instance.is_moderated_by(current_user):
+            raise Exception('You are not allowed to moderate this voting')
     else:
-        from flask_login import current_user
         voting_instance = Voting(owner_id=current_user.get_id())
 
     voting_instance.name = unicode(request.form['name'])

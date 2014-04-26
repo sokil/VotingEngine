@@ -1,4 +1,5 @@
 from app import db
+from flask import request, flash
 from sqlalchemy import Column, String, Integer, ForeignKey, func
 
 
@@ -37,3 +38,17 @@ class Voting(db.Model):
 
     def is_moderated_by(self, user):
         return user.has_role('moderator') or self.is_owned_by(user)
+
+    def is_allowed_for_country(self, alpha2=None):
+        if alpha2:
+            alpha2 = alpha2.upper()
+        else:
+            if request.remote_addr == '127.0.0.1':
+                flash('<b>DEBUG!</b> This voting limited to %s' % self.country)
+                return True
+
+            import pygeoip
+            geoip = pygeoip.GeoIP('./configs/geoip/GeoIP.dat')
+            alpha2 = geoip.country_code_by_addr(request.remote_addr)
+
+        return alpha2 == self.country
