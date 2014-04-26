@@ -40,6 +40,10 @@ class Voting(db.Model):
         return user.has_role('moderator') or self.is_owned_by(user)
 
     def is_allowed_for_country(self, alpha2=None):
+
+        if not self.country:
+            return True
+
         if alpha2:
             alpha2 = alpha2.upper()
         else:
