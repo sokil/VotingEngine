@@ -76,17 +76,15 @@ def voting_page(voting_id, token=None):
     if not voting_instance.is_public() and voting_instance.token != token:
         return render_template('error_notfound.html'), 404
 
-    # check if allowed in current country
-    if not voting_instance.is_allowed_for_country():
-        flash(gettext('This voting not allowed in your country. Allowed only for %s' % voting_instance.country))
-        return redirect(url_for('voting.voting_list'))
-
     from flask_login import current_user
     from models.vote import Vote
 
     # Show voting variants
     if not current_user.is_authenticated() or Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is None:
-        return render_template('voting_variants.html', voting=voting_instance, user=current_user)
+        if voting_instance.is_allowed_for_country():
+            return render_template('voting_variants.html', voting=voting_instance, user=current_user)
+        else:
+            flash(gettext('This voting not allowed in your country. Allowed only for %s' % voting_instance.country))
 
     # Get points of variants
     from app import db
