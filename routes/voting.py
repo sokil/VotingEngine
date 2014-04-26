@@ -165,7 +165,7 @@ def voting_save():
     db.session.commit()
 
     flash(u'Voting successfully saved')
-    return redirect(url_for('voting.voting_edit', voting_id=voting_instance.id))
+    return redirect(url_for('voting.voting_page', voting_id=voting_instance.id))
 
 """
 New voting variant
