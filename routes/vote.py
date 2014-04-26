@@ -81,7 +81,7 @@ def vote_session_save():
 
     # Check if user voted in this voting
     if Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is not None:
-        return redirect(url_for('voting.voting_result', voting_id=voting_id))
+        return redirect(url_for('voting.voting_page', voting_id=voting_id))
 
     # save vote
     from app import db
