@@ -70,7 +70,7 @@ def voting_variants(voting_id):
 
     # check if allowed in current country
     if not voting_instance.is_allowed_for_country():
-        flash(gettext('This voting not allowed in your country.Allowed only for %s' % voting_instance.country))
+        flash(gettext('This voting not allowed in your country. Allowed only for %s' % voting_instance.country))
         return redirect(url_for('voting.voting_list'))
 
     return render_template('voting_variants.html', voting=voting_instance, user=current_user)
