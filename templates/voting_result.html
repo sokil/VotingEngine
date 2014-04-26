@@ -2,7 +2,7 @@
 {% block title %} {{ voting['name'] }} :: {{ _('Voting results') }} :: {% endblock %}
 {% block meta %}
 <meta name="description" content="{{ voting['name'] }}. {{_('Leave your vote in on-line voting.') }}">
-<meta property="og:type"   content="website">
+<meta property="og:type"   content="article">
 <meta property="og:image" content="http://{{ config['SERVER_NAME'] }}/images/ico.png">
 <meta property="og:title" content="{{ voting['name'] }}">
 <meta property="og:url" content="http://{{ config['SERVER_NAME'] }}/voting/{{ voting['id'] }}">
