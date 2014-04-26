@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, redirect, render_template, request, url_for, session
+from flask import Blueprint, current_app, redirect, render_template, request, url_for, session, render_template_string
 from flask_login import login_required, login_user, logout_user
 
 auth = Blueprint('auth', __name__)
@@ -20,7 +20,7 @@ def auth_form(auth_method):
         auth_url = "%s/authorize?client_id=%d&redirect_uri=%s&scope=2" % (
             current_app.config['AUTH_VKONTAKTE_HOST'],
             current_app.config['AUTH_VKONTAKTE_APP_ID'],
-            'http://%s/auth/vkontakte' % current_app.config['HOSTNAME']
+            'http://%s/auth/vkontakte' % current_app.config['SERVER_NAME']
         )
 
     else:
@@ -48,7 +48,7 @@ def auth_check(auth_method):
             current_app.config['AUTH_VKONTAKTE_APP_ID'],
             current_app.config['AUTH_VKONTAKTE_SECRET'],
             code,
-            'http://%s/auth/vkontakte' % current_app.config['HOSTNAME']
+            'http://%s/auth/vkontakte' % current_app.config['SERVER_NAME']
         )
 
         import urllib2
@@ -67,7 +67,8 @@ def auth_check(auth_method):
             db.session.commit()
 
         # authorize
-        login_user(user_instance)
+        if not login_user(user_instance):
+            raise Exception('Error authenticating user')
 
     # return
     return_url = session.get('return_url') if session.has_key('return_url') else '/'

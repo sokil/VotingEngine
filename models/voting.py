@@ -1,6 +1,6 @@
 from app import db
-from flask import request, flash
-from sqlalchemy import Column, String, Integer, ForeignKey, func
+from flask import request, flash, url_for
+from sqlalchemy import Column, String, Integer, ForeignKey, func, event
 
 
 class Voting(db.Model):
@@ -10,6 +10,7 @@ class Voting(db.Model):
     name = Column(String(255), nullable=False)
     owner_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     country = Column(String(2))
+    token = Column(String(80))
 
     variants = db.relationship("VotingVariant", backref="votings", order_by="VotingVariant.title")
     owner = db.relationship('User')
@@ -56,3 +57,26 @@ class Voting(db.Model):
             alpha2 = geoip.country_code_by_addr(request.remote_addr)
 
         return alpha2 == self.country
+
+    @staticmethod
+    def generate_token():
+        import random
+        alphabet = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
+        return ''.join([random.choice(alphabet) for _ in range(80)])
+
+    def set_private(self):
+        self.token = self.generate_token()
+        return self
+
+    def set_public(self):
+        self.token = None
+        return self
+
+    def is_public(self):
+        return not bool(self.token)
+
+    def get_url(self):
+        if self.is_public():
+            return url_for('voting.voting_page', voting_id=self.id, _external=True)
+        else:
+            return url_for('voting.voting_page', voting_id=self.id, token=self.token, _external=True)

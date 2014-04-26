@@ -1,5 +1,5 @@
 class Config(object):
-    HOSTNAME = 'voting'
+    SERVER_NAME = 'voting.local'
 
     PORT = 9876
     DEBUG = True

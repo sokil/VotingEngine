@@ -22,6 +22,36 @@
         </select>
     </div>
     <div class="form-group">
+        <label>{{ _('Privacy') }}</label>
+        <div class="radio">
+            <label>
+                <input type="radio" name="privacy" value="public" {% if voting.is_public() %}checked="checked"{% endif %} />
+                {{ _('Visible for all') }}
+                {% if voting.is_public() %}
+                <div class="bg-success" style="padding: 10px;">
+                    <span class="glyphicon glyphicon-share"></span>
+                    {{ _('Use this link to share') }}:
+                    <a href="{{ voting.get_url() }}">{{ voting.get_url() }}</a>
+                </div>
+                {% endif %}
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="privacy" value="private" {% if not voting.is_public() %}checked="checked"{% endif %} />
+                {{ _('Visible for all, who know link') }}
+                {% if not voting.is_public() %}
+                <div class="bg-success" style="padding: 10px;">
+                    <span class="glyphicon glyphicon-share"></span>
+                    {{ _('Use this link to share') }}:
+                    <a href="{{ voting.get_url() }}">{{ voting.get_url() }}</a>
+                </div>
+                {% endif %}
+
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
         <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />
     </div>
 </form>

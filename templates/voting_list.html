@@ -3,9 +3,9 @@
 {% block meta %}
 <meta name="description" content="{{ _('Hosting of on-line votings.') }}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://{{ config['HOSTNAME'] }}/images/ico.png">
+<meta property="og:image" content="http://{{ config['SERVER_NAME'] }}/images/ico.png">
 <meta property="og:title" content="{{ _('Hosting of on-line votings.') }}">
-<meta property="og:url" content="http://{{ config['HOSTNAME'] }}/ }}">
+<meta property="og:url" content="http://{{ config['SERVER_NAME'] }}/ }}">
 <meta property="og:description" content="{{_('Leave your vote in on-line voting.') }}">
 {% endblock %}
 {% block body %}
@@ -22,7 +22,7 @@
     </tr>
     {% for voting in voting_list %}
     <tr>
-        <td><a href="{{ url_for('voting.voting_page', voting_id=voting['id']) }}">{{ voting['name'] }}</a></td>
+        <td><a href="{{ voting.get_url() }}" {% if not voting.is_public() %}class="text-muted"{% endif %}>{{ voting['name'] }}</a></td>
         <td>{{ voting.get_voted_users_num() }}</td>
         <td>
             {% if voting.is_moderated_by(current_user) %}

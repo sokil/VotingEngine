@@ -9,6 +9,7 @@ Voting list
 """
 @voting.route("/")
 def voting_list():
+
     from models.voting import Voting
     from sqlalchemy import or_
 
@@ -16,13 +17,17 @@ def voting_list():
 
     remote_address = request.remote_addr
 
-    # get code of current country
+    # filter votes not visible in current country
     if remote_address != '127.0.0.1':
         import pygeoip
         geoip = pygeoip.GeoIP('./configs/geoip/GeoIP.dat')
         alpha2 = geoip.country_code_by_addr(remote_address)
 
         query = query.filter(or_(Voting.country.is_(None), Voting.country == alpha2))
+
+    # filter private votes, not owned by me
+    from flask_login import current_user
+    query = query.filter(or_(Voting.token.is_(None), Voting.owner_id == current_user.get_id()))
 
     return render_template('voting_list.html', voting_list=query.all())
 
@@ -56,12 +61,17 @@ def voting_edit(voting_id=None):
 Voting page
 """
 @voting.route('/voting/<voting_id>')
-def voting_page(voting_id):
+@voting.route('/voting/<voting_id>/<token>')
+def voting_page(voting_id, token=None):
 
     # get voting
     from models.voting import Voting
     voting_instance = Voting.query.get(voting_id)
     if voting_instance is None:
+        return render_template('error_notfound.html'), 404
+
+    # check privacy
+    if not voting_instance.is_public() and voting_instance.token != token:
         return render_template('error_notfound.html'), 404
 
     # check if allowed in current country
@@ -135,16 +145,27 @@ def voting_save():
     else:
         voting_instance = Voting(owner_id=current_user.get_id())
 
+    # name
     voting_instance.name = unicode(request.form['name'])
 
+    # country
     if request.form.get('country'):
         voting_instance.country = unicode(request.form['country'])
+
+    # privacy
+    if request.form.get('privacy') == 'public':
+        voting_instance.set_public()
+        print 'pub'
+    else:
+        voting_instance.set_private()
+        print 'priv'
 
     from app import db
     db.session.add(voting_instance)
     db.session.commit()
 
-    return redirect(url_for('voting.voting_list'))
+    flash(u'Voting successfully saved')
+    return redirect(url_for('voting.voting_edit', voting_id=voting_instance.id))
 
 """
 New voting variant
