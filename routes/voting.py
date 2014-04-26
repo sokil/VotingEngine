@@ -103,7 +103,7 @@ def voting_save():
     db.session.add(voting_instance)
     db.session.commit()
 
-    return redirect(url_for('voting.voting_edit', voting_id=voting_instance.id))
+    return redirect(url_for('voting.voting_list'))
 
 """
 New voting variant
