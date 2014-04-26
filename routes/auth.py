@@ -54,7 +54,6 @@ def auth_check(auth_method):
         import urllib2
         import json
         response = json.loads(urllib2.urlopen(current_app.config['AUTH_VKONTAKTE_HOST'] + url).read())
-        print response
 
         # check user existence
         from models.user import User
