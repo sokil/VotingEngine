@@ -29,8 +29,8 @@
         <div class="container top-space">
             <div class="row bottom-space">
                 <div class="col-md-2">
-                    <div style="font-size: 28px;">EverVoter</div>
-                    <div style="font-size: 12px;">{{ _('Every voice will hear') }}</div>
+                    <a href="/" style="font-size: 28px; text-decoration: none; color: #777777;">EverVoter</a>
+                    <div style="font-size: 12px; color: #999999;">{{ _('Every voice will hear') }}</div>
                 </div>
                 <div class="col-md-10">
                     <ul class="nav nav-pills navbar-nav navbar-right" style="margin: 1px;">
@@ -48,7 +48,7 @@
             {% for message in get_flashed_messages() %}<div class="alert alert-danger">{{ message|safe }}</div>{% endfor %}
             {% block body %}{% endblock %}
         </div>
-        <div id="footer">
+        <div id="footer" class="top-space">
             <div class="container text-right">
                 <div class="row top-space">
                     &copy sokil

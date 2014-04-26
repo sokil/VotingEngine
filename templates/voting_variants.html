@@ -48,19 +48,19 @@
     <li>{{ voting['name'] }}</li>
 </ol>
 
-{% if current_user.is_authenticated() and voting.owner == current_user %}
-<div class="btn-toolbar">
-    <a href="{{ url_for('voting.variant_new', voting_id=voting.id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add variant') }}</a>
-</div>
-<hr>
-{% endif %}
-
 <h1>{{ voting['name'] }}</h1>
 
-<div class="row-fluid">
+<div class="row-fluid top-space">
     <div class="col-md-6">
         <div class="panel panel-info">
-            <div class="panel-heading">{{ _('Variants') }}</div>
+            <div class="panel-heading">
+                {{ _('Variants') }}
+                {% if current_user.is_authenticated() and voting.owner == current_user %}
+                    <div class="btn-toolbar pull-right">
+                        <a href="{{ url_for('voting.variant_new', voting_id=voting.id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add variant') }}</a>
+                    </div>
+                    {% endif %}
+            </div>
             <ul id="variants" class="votingPanel list-group">
                 {% for variant in voting.variants %}
                 <li class="list-group-item">
