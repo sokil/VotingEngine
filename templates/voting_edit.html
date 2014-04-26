@@ -27,7 +27,7 @@
             <label>
                 <input type="radio" name="privacy" value="public" {% if voting.is_public() %}checked="checked"{% endif %} />
                 {{ _('Visible for all') }}
-                {% if voting.is_public() %}
+                {% if voting.id and voting.is_public() %}
                 <div class="bg-success" style="padding: 10px;">
                     <span class="glyphicon glyphicon-share"></span>
                     {{ _('Use this link to share') }}:
@@ -40,7 +40,7 @@
             <label>
                 <input type="radio" name="privacy" value="private" {% if not voting.is_public() %}checked="checked"{% endif %} />
                 {{ _('Visible for all, who know link') }}
-                {% if not voting.is_public() %}
+                {% if voting.id and not voting.is_public() %}
                 <div class="bg-success" style="padding: 10px;">
                     <span class="glyphicon glyphicon-share"></span>
                     {{ _('Use this link to share') }}:

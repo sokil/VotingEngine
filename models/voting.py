@@ -76,6 +76,9 @@ class Voting(db.Model):
         return not bool(self.token)
 
     def get_url(self):
+        if not self.id:
+            return None
+
         if self.is_public():
             return url_for('voting.voting_page', voting_id=self.id, _external=True)
         else:
