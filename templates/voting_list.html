@@ -14,7 +14,7 @@
     </tr>
     {% for voting in voting_list %}
     <tr>
-        <td><a href="{{ url_for('voting.voting_variants', voting_id=voting['id']) }}">{{ voting['name'] }}</a></td>
+        <td><a href="{{ url_for('voting.voting_page', voting_id=voting['id']) }}">{{ voting['name'] }}</a></td>
         <td>{{ voting.get_voted_users_num() }}</td>
         <td>
             {% if voting.is_moderated_by(current_user) %}

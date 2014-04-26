@@ -56,15 +56,7 @@ def voting_edit(voting_id=None):
 Voting page
 """
 @voting.route('/voting/<voting_id>')
-def voting_variants(voting_id):
-
-    from flask_login import current_user
-
-    # Check if user voted in this voting
-    if current_user.is_authenticated():
-        from models.vote import Vote
-        if Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is not None:
-            return redirect(url_for('voting.voting_result', voting_id=voting_id))
+def voting_page(voting_id):
 
     # get voting
     from models.voting import Voting
@@ -75,7 +67,52 @@ def voting_variants(voting_id):
         flash(gettext('This voting not allowed in your country. Allowed only for %s' % voting_instance.country))
         return redirect(url_for('voting.voting_list'))
 
-    return render_template('voting_variants.html', voting=voting_instance, user=current_user)
+    from flask_login import current_user
+    from models.vote import Vote
+
+    # Show voting variants
+    if not current_user.is_authenticated() or Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is None:
+        return render_template('voting_variants.html', voting=voting_instance, user=current_user)
+
+    # Get points of variants
+    from app import db
+    from sqlalchemy.sql import func, label
+    vote_stat_list = db.session\
+        .query(Vote.voting_variant_id, func.sum(Vote.point).label('rate'))\
+        .filter_by(voting_id=voting_id)\
+        .group_by(Vote.voting_variant_id)\
+        .order_by('rate DESC')\
+        .all()
+
+    # get variants
+    voting_variants = voting_instance.variants
+
+    # prepare structure
+    votes = []
+    total_points = 0
+    for vote_stat in vote_stat_list:
+        for variant in voting_variants:
+            if variant.id != vote_stat[0]:
+                continue
+            votes.append({
+                'variant': variant,
+                'rate': vote_stat[1]
+            })
+            voting_variants.remove(variant)
+            total_points += vote_stat[1]
+            break
+
+    for variant in voting_variants:
+        votes.append({
+            'variant': variant,
+            'rate': 0
+        })
+
+    # calc total stat
+    for vote in votes:
+        vote['percent'] = round(vote['rate'] / total_points * 100, 2)
+
+    return render_template('voting_result.html', voting=voting_instance, votes=votes)
 
 
 """
@@ -176,70 +213,4 @@ def variant_save():
     db.session.add(variant_instance)
     db.session.commit()
 
-    return redirect(url_for('voting.voting_variants', voting_id=variant_instance.voting_id))
-
-
-"""
-Show results
-"""
-@voting.route('/voting/result/<voting_id>')
-@login_required
-def voting_result(voting_id):
-
-    # Check if user voted in this voting
-    from models.vote import Vote
-    from flask_login import current_user
-    if Vote.query.filter_by(voting_id=voting_id, user_id=current_user.get_id()).first() is None:
-        from flask_babel import gettext
-        flash(gettext(u'You must vote first to see results'))
-        return redirect(url_for('voting.voting_variants', voting_id=voting_id))
-
-    # Get points of variants
-    #
-    # SELECT voting_variant_id, SUM(point) AS rate
-    # FROM votes
-    # WHERE voting_id = 5
-    # GROUP BY voting_variant_id
-    # ORDER BY rate DESC
-    from models.vote import Vote
-    from app import db
-    from sqlalchemy.sql import func
-    from sqlalchemy.sql import label
-    vote_stat_list = db.session\
-        .query(Vote.voting_variant_id, func.sum(Vote.point).label('rate'))\
-        .filter_by(voting_id=voting_id)\
-        .group_by(Vote.voting_variant_id)\
-        .order_by('rate DESC')\
-        .all()
-
-    # get variants
-    from models.voting import Voting
-    voting_instance = Voting.query.get(voting_id)
-    voting_variants = voting_instance.variants
-
-    # prepare structure
-    votes = []
-    total_points = 0
-    for vote_stat in vote_stat_list:
-        for variant in voting_variants:
-            if variant.id != vote_stat[0]:
-                continue
-            votes.append({
-                'variant': variant,
-                'rate': vote_stat[1]
-            })
-            voting_variants.remove(variant)
-            total_points += vote_stat[1]
-            break
-
-    for variant in voting_variants:
-        votes.append({
-            'variant': variant,
-            'rate': 0
-        })
-
-    # calc total stat
-    for vote in votes:
-        vote['percent'] = round(vote['rate'] / total_points * 100, 2)
-
-    return render_template('voting_result.html', voting=voting_instance, votes=votes)
+    return redirect(url_for('voting.voting_page', voting_id=variant_instance.voting_id))

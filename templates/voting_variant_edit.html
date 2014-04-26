@@ -4,7 +4,7 @@
 <h1>{{ _('Voting variant editor') }}</h1>
 <ol class="breadcrumb">
     <li><a href="{{ url_for('voting.voting_list') }}">{{ _('Votings') }}</a></li>
-    <li><a href="{{ url_for('voting.voting_variants', voting_id=variant.voting_id) }}">{{ _('Voting') }}</a></li>
+    <li><a href="{{ url_for('voting.voting_page', voting_id=variant.voting_id) }}">{{ _('Voting') }}</a></li>
     <li>{{ variant.title|default(_('Add variant'), true) }}</li>
 </ol>
 <form method="post" action="{{ url_for('voting.variant_save') }}">

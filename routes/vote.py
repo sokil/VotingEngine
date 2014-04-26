@@ -36,7 +36,7 @@ def vote_save(voting_id=None):
 
             db.session.commit()
 
-            response['redirect_url'] = url_for('voting.voting_result', voting_id=voting_id)
+            response['redirect_url'] = url_for('voting.voting_page', voting_id=voting_id)
 
         else:
             session['vote'] = {
@@ -93,4 +93,4 @@ def vote_session_save():
 
     db.session.commit()
 
-    return redirect(url_for('voting.voting_result', voting_id=voting_id))
+    return redirect(url_for('voting.voting_page', voting_id=voting_id))
