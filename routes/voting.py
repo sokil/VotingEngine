@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, current_app, redirect, session, url_for, flash
+from flask import Blueprint, render_template, render_template_string, request, jsonify, current_app, redirect, session, url_for, flash
 from flask_login import login_required
 from flask_babel import gettext
 
@@ -61,6 +61,8 @@ def voting_page(voting_id):
     # get voting
     from models.voting import Voting
     voting_instance = Voting.query.get(voting_id)
+    if voting_instance is None:
+        return render_template('error_notfound.html'), 404
 
     # check if allowed in current country
     if not voting_instance.is_allowed_for_country():
