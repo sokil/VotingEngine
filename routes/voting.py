@@ -62,6 +62,8 @@ Voting page
 """
 @voting.route('/voting/<voting_id>')
 @voting.route('/voting/<voting_id>/<token>')
+@voting.route('/v/<voting_id>')
+@voting.route('/v/<voting_id>/<token>')
 def voting_page(voting_id, token=None):
 
     # get voting
