@@ -14,13 +14,15 @@ def voting_list():
 
     query = Voting.query
 
+    remote_address = request.remote_addr
+
     # get code of current country
-    if request.remote_addr != '127.0.0.1':
+    if remote_address != '127.0.0.1':
         import pygeoip
         geoip = pygeoip.GeoIP('./configs/geoip/GeoIP.dat')
-        alpha2 = geoip.country_code_by_addr(request.remote_addr)
+        alpha2 = geoip.country_code_by_addr(remote_address)
 
-        query.filter(or_(Voting.country.is_(None), Voting.country.is_(alpha2)))
+        query = query.filter(or_(Voting.country.is_(None), Voting.country == alpha2))
 
     return render_template('voting_list.html', voting_list=query.all())
 
