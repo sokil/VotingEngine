@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify, current_app, redirect, session, url_for, flash
 from flask_login import login_required
+from flask_babel import gettext
 
 voting = Blueprint('voting', __name__)
 
@@ -69,7 +70,8 @@ def voting_variants(voting_id):
 
     # check if allowed in current country
     if not voting_instance.is_allowed_for_country():
-        raise Exception('This voting not allowed in your country')
+        flash(gettext('This voting not allowed in your country.Allowed only for %s' % voting_instance.country))
+        return redirect(url_for('voting.voting_list'))
 
     return render_template('voting_variants.html', voting=voting_instance, user=current_user)
 
