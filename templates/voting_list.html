@@ -1,5 +1,13 @@
 {% extends "empty_layout.html" %}
 {% block title %}{{ _('Voting list') }} :: {% endblock %}
+{% block meta %}
+<meta name="description" content="{{ _('Hosting of on-line votings.') }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://{{ config['HOSTNAME'] }}/images/ico.png">
+<meta property="og:title" content="{{ _('Hosting of on-live votings.') }}">
+<meta property="og:url" content="http://{{ config['HOSTNAME'] }}/ }}">
+<meta property="og:description" content="{{_('Leave your vote in on-line voting.') }}">
+{% endblock %}
 {% block body %}
 <h1>{{ _('Available votings') }}</h1>
     <div class="btn-toolbar bottom-space">
