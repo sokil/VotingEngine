@@ -26,10 +26,10 @@
 
     <h1>{{ voting['name'] }}</h1>
     <div class="top-space bottom-space">
-        <a href="http://vk.com/share.php?url={{ voting.get_url() }}"><img src="/images/social/vkontakte.png" /></a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ voting.get_url() }}"><img src="/images/social/facebook.png" /></a>
-        <a href="http://twitter.com/intent/tweet?text={{ voting['name'] + '. ' + _('Leave your vote in on-line voting.') + ' ' + voting.get_url() + ' #EverVoter' }}"><img src="/images/social/twitter.png" /></a>
-        <a href="https://plus.google.com/share?url={{ voting.get_url() }}"><img src="/images/social/google.png" /></a>
+        <a href="http://vk.com/share.php?url={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Vkontakte') }}"><img src="/images/social/vkontakte.png" /></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Facebook') }}"><img src="/images/social/facebook.png" /></a>
+        <a href="http://twitter.com/intent/tweet?text={{ voting['name'] + '. ' + _('Leave your vote in on-line voting.') + ' ' + voting.get_url() + ' #EverVoter' }}" target="_blank" title="{{ _('Share at Twitter') }}"><img src="/images/social/twitter.png" /></a>
+        <a href="https://plus.google.com/share?url={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Google+') }}"><img src="/images/social/google.png" /></a>
     </div>
 
     {% for vote in votes %}
@@ -41,10 +41,10 @@
     {% endfor %}
 
     <div class="top-space bottom-space">
-        <a href="http://vk.com/share.php?url={{ voting.get_url() }}"><img src="/images/social/vkontakte.png" /></a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ voting.get_url() }}"><img src="/images/social/facebook.png" /></a>
-        <a href="http://twitter.com/intent/tweet?text={{ voting['name'] + '. ' + _('Leave your vote in on-line voting.') + ' ' + voting.get_url() + ' #EverVoter' }}"><img src="/images/social/twitter.png" /></a>
-        <a href="https://plus.google.com/share?url={{ voting.get_url() }}"><img src="/images/social/google.png" /></a>
+        <a href="http://vk.com/share.php?url={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Vkontakte') }}"><img src="/images/social/vkontakte.png" /></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Facebook') }}"><img src="/images/social/facebook.png" /></a>
+        <a href="http://twitter.com/intent/tweet?text={{ voting['name'] + '. ' + _('Leave your vote in on-line voting.') + ' ' + voting.get_url() + ' #EverVoter' }}" target="_blank" title="{{ _('Share at Twitter') }}"><img src="/images/social/twitter.png" /></a>
+        <a href="https://plus.google.com/share?url={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Google+') }}"><img src="/images/social/google.png" /></a>
     </div>
 
 {% endblock %}
