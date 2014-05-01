@@ -23,3 +23,6 @@ class Config(object):
     AUTH_VKONTAKTE_HOST = "https://oauth.vk.com"
     AUTH_VKONTAKTE_APP_ID = None
     AUTH_VKONTAKTE_SECRET = None
+
+    DISQUS = False
+    DISQUS_SHORTNAME = None
