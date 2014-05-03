@@ -1,5 +1,6 @@
-from flask import Blueprint, current_app, redirect, render_template, request, url_for, session, render_template_string
+from flask import Blueprint, current_app, redirect, render_template, request, url_for, session, render_template_string, flash
 from flask_login import login_required, login_user, logout_user
+from flask_babel import gettext
 
 auth = Blueprint('auth', __name__)
 
@@ -40,7 +41,8 @@ def auth_check(auth_method):
 
         # get access token
         if 'code' not in request.args:
-            raise Exception('Code not specified');
+            flash(gettext('Error while authorize user'))
+            return redirect('/')
 
         code = request.args['code']
 
