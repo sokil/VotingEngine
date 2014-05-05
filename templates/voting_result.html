@@ -25,6 +25,13 @@
     </div>
 
     <h1>{{ voting['name'] }}</h1>
+
+    {% if current_user.is_authenticated() and voting.owner == current_user %}
+    <div class="btn-toolbar">
+        <a href="{{ url_for('voting.variant_new', voting_id=voting.id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add variant') }}</a>
+    </div>
+    {% endif %}
+
     <div class="top-space bottom-space">
         <a href="http://vk.com/share.php?url={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Vkontakte') }}"><img src="/images/social/vkontakte.png" /></a>
         <a href="https://www.facebook.com/sharer/sharer.php?u={{ voting.get_url() }}" target="_blank" title="{{ _('Share at Facebook') }}"><img src="/images/social/facebook.png" /></a>

@@ -59,7 +59,7 @@
                     <div class="btn-toolbar pull-right">
                         <a href="{{ url_for('voting.variant_new', voting_id=voting.id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add variant') }}</a>
                     </div>
-                    {% endif %}
+                {% endif %}
             </div>
             <ul id="variants" class="votingPanel list-group">
                 {% for variant in voting.variants %}
