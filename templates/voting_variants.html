@@ -128,9 +128,11 @@
     })
     .disableSelection();
 
-    $('#vote').on('sortover', function() {
-        $('#lblDropPlaceMarker').remove();
-    });
+    $('#vote')
+        .on('sortover', function() {
+            $('#lblDropPlaceMarker').remove();
+        })
+        .sortable("option", "cancel", "#lblDropPlaceMarker" );
 
     // send form
     $('#frmVote').submit(function(e) {
