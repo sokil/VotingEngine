@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-25 01:10+0300\n"
+"POT-Creation-Date: 2014-05-05 22:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: ../../routes/voting.py:160
-msgid "You must vote first to see results"
+#: ../../routes/auth.py:44
+msgid "Error while authorize user"
+msgstr ""
+
+#: ../../routes/voting.py:87
+#, python-format
+msgid "This voting not allowed in your country. Allowed only for %s"
 msgstr ""
 
 #: ../../templates/auth_login.html:2
@@ -34,12 +39,24 @@ msgstr ""
 msgid "Voting"
 msgstr ""
 
-#: ../../templates/empty_layout.html:32
+#: ../../templates/empty_layout.html:34
+msgid "Every voice will hear"
+msgstr ""
+
+#: ../../templates/empty_layout.html:39 ../../templates/voting_edit.html:7
+msgid "Add voting"
+msgstr ""
+
+#: ../../templates/empty_layout.html:43
 msgid "Sign out"
 msgstr ""
 
-#: ../../templates/empty_layout.html:34 ../../templates/voting_variants.html:18
+#: ../../templates/empty_layout.html:45 ../../templates/voting_variants.html:18
 msgid "Sign in"
+msgstr ""
+
+#: ../../templates/error_notfound.html:2 ../../templates/error_notfound.html:4
+msgid "Page not found"
 msgstr ""
 
 #: ../../templates/voting_edit.html:2
@@ -56,11 +73,7 @@ msgstr ""
 msgid "Votings"
 msgstr ""
 
-#: ../../templates/voting_edit.html:7 ../../templates/voting_list.html:6
-msgid "Add voting"
-msgstr ""
-
-#: ../../templates/voting_edit.html:12 ../../templates/voting_list.html:10
+#: ../../templates/voting_edit.html:12 ../../templates/voting_list.html:15
 msgid "Name"
 msgstr ""
 
@@ -69,6 +82,30 @@ msgid "Voting name"
 msgstr ""
 
 #: ../../templates/voting_edit.html:16
+msgid "Country"
+msgstr ""
+
+#: ../../templates/voting_edit.html:18
+msgid "All countries"
+msgstr ""
+
+#: ../../templates/voting_edit.html:25
+msgid "Privacy"
+msgstr ""
+
+#: ../../templates/voting_edit.html:29
+msgid "Visible for all"
+msgstr ""
+
+#: ../../templates/voting_edit.html:33 ../../templates/voting_edit.html:46
+msgid "Use this link to share"
+msgstr ""
+
+#: ../../templates/voting_edit.html:42
+msgid "Visible for all, who know link"
+msgstr ""
+
+#: ../../templates/voting_edit.html:55
 #: ../../templates/voting_variant_edit.html:29
 msgid "Save"
 msgstr ""
@@ -77,22 +114,53 @@ msgstr ""
 msgid "Voting list"
 msgstr ""
 
-#: ../../templates/voting_list.html:4
-msgid "Available votings"
+#: ../../templates/voting_list.html:4 ../../templates/voting_list.html:7
+msgid "Hosting of on-line votings."
+msgstr ""
+
+#: ../../templates/voting_list.html:9 ../../templates/voting_result.html:4
+#: ../../templates/voting_result.html:9 ../../templates/voting_result.html:38
+#: ../../templates/voting_result.html:53 ../../templates/voting_variants.html:4
+#: ../../templates/voting_variants.html:9
+msgid "Leave your vote in on-line voting."
+msgstr ""
+
+#: ../../templates/voting_list.html:16
+msgid "Voted"
+msgstr ""
+
+#: ../../templates/voting_list.html:25
+msgid "Edit"
 msgstr ""
 
 #: ../../templates/voting_result.html:2 ../../templates/voting_result.html:17
 msgid "Voting results"
 msgstr ""
 
-#: ../../templates/voting_result.html:4 ../../templates/voting_result.html:9
-#: ../../templates/voting_variants.html:4
-#: ../../templates/voting_variants.html:9
-msgid "Leave your vote in on-line voting."
-msgstr ""
-
 #: ../../templates/voting_result.html:22
 msgid "Voted persons:"
+msgstr ""
+
+#: ../../templates/voting_result.html:31
+#: ../../templates/voting_variant_edit.html:8
+#: ../../templates/voting_variants.html:60
+msgid "Add variant"
+msgstr ""
+
+#: ../../templates/voting_result.html:36 ../../templates/voting_result.html:51
+msgid "Share at Vkontakte"
+msgstr ""
+
+#: ../../templates/voting_result.html:37 ../../templates/voting_result.html:52
+msgid "Share at Facebook"
+msgstr ""
+
+#: ../../templates/voting_result.html:38 ../../templates/voting_result.html:53
+msgid "Share at Twitter"
+msgstr ""
+
+#: ../../templates/voting_result.html:39 ../../templates/voting_result.html:54
+msgid "Share at Google+"
 msgstr ""
 
 #: ../../templates/voting_variant_edit.html:2
@@ -101,11 +169,6 @@ msgstr ""
 
 #: ../../templates/voting_variant_edit.html:4
 msgid "Voting variant editor"
-msgstr ""
-
-#: ../../templates/voting_variant_edit.html:8
-#: ../../templates/voting_variants.html:53
-msgid "Add variant"
 msgstr ""
 
 #: ../../templates/voting_variant_edit.html:18
@@ -128,7 +191,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ../../templates/voting_variants.html:63
+#: ../../templates/voting_variants.html:57
 msgid "Variants"
 msgstr ""
 

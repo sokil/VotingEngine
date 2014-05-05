@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-25 01:10+0300\n"
-"PO-Revision-Date: 2014-04-25 01:10+0300\n"
+"POT-Creation-Date: 2014-05-05 22:58+0300\n"
+"PO-Revision-Date: 2014-05-05 23:06+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
@@ -19,9 +19,14 @@ msgstr ""
 "Generated-By: Babel 1.3\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: ../../routes/voting.py:160
-msgid "You must vote first to see results"
-msgstr "Чтобы увидеть результат вы должны проголосовать"
+#: ../../routes/auth.py:44
+msgid "Error while authorize user"
+msgstr "Ошибка при авторизации"
+
+#: ../../routes/voting.py:87
+#, python-format
+msgid "This voting not allowed in your country. Allowed only for %s"
+msgstr "Это голосование недоступно в вашей стране, доступно только для %s"
 
 #: ../../templates/auth_login.html:2
 msgid "Authorisation"
@@ -36,14 +41,26 @@ msgstr "Укажите, с помощью какого сервиса вы хо�
 msgid "Voting"
 msgstr "Голосование"
 
-#: ../../templates/empty_layout.html:32
+#: ../../templates/empty_layout.html:34
+msgid "Every voice will hear"
+msgstr "Каждый голос будет услышан"
+
+#: ../../templates/empty_layout.html:39 ../../templates/voting_edit.html:7
+msgid "Add voting"
+msgstr "Добавить голосование"
+
+#: ../../templates/empty_layout.html:43
 msgid "Sign out"
 msgstr "Выход"
 
-#: ../../templates/empty_layout.html:34
+#: ../../templates/empty_layout.html:45
 #: ../../templates/voting_variants.html:18
 msgid "Sign in"
 msgstr "Вход"
+
+#: ../../templates/error_notfound.html:2 ../../templates/error_notfound.html:4
+msgid "Page not found"
+msgstr "Страница не найдена"
 
 #: ../../templates/voting_edit.html:2
 msgid "Edit voting"
@@ -59,11 +76,7 @@ msgstr "Редактор голосований"
 msgid "Votings"
 msgstr "Голосования"
 
-#: ../../templates/voting_edit.html:7 ../../templates/voting_list.html:6
-msgid "Add voting"
-msgstr "Добавить голосование"
-
-#: ../../templates/voting_edit.html:12 ../../templates/voting_list.html:10
+#: ../../templates/voting_edit.html:12 ../../templates/voting_list.html:15
 msgid "Name"
 msgstr "Название"
 
@@ -72,6 +85,30 @@ msgid "Voting name"
 msgstr "Название голосования"
 
 #: ../../templates/voting_edit.html:16
+msgid "Country"
+msgstr "Страна"
+
+#: ../../templates/voting_edit.html:18
+msgid "All countries"
+msgstr "Все страны"
+
+#: ../../templates/voting_edit.html:25
+msgid "Privacy"
+msgstr "Приватность"
+
+#: ../../templates/voting_edit.html:29
+msgid "Visible for all"
+msgstr "Видимое для всех"
+
+#: ../../templates/voting_edit.html:33 ../../templates/voting_edit.html:46
+msgid "Use this link to share"
+msgstr "Используйте эту ссылку для распространения"
+
+#: ../../templates/voting_edit.html:42
+msgid "Visible for all, who know link"
+msgstr "Видимое для всех, кто знает ссылку"
+
+#: ../../templates/voting_edit.html:55
 #: ../../templates/voting_variant_edit.html:29
 msgid "Save"
 msgstr "Сохранить"
@@ -80,23 +117,55 @@ msgstr "Сохранить"
 msgid "Voting list"
 msgstr "Список голосований"
 
-#: ../../templates/voting_list.html:4
-msgid "Available votings"
-msgstr "Голосования"
+#: ../../templates/voting_list.html:4 ../../templates/voting_list.html:7
+msgid "Hosting of on-line votings."
+msgstr "Хостинг он-лайн голосований."
 
-#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:17
-msgid "Voting results"
-msgstr "Результаты голосования"
-
-#: ../../templates/voting_result.html:4 ../../templates/voting_result.html:9
+#: ../../templates/voting_list.html:9 ../../templates/voting_result.html:4
+#: ../../templates/voting_result.html:9 ../../templates/voting_result.html:38
+#: ../../templates/voting_result.html:53
 #: ../../templates/voting_variants.html:4
 #: ../../templates/voting_variants.html:9
 msgid "Leave your vote in on-line voting."
 msgstr "Оставьте свой голос в он-лайн голосовании."
 
+#: ../../templates/voting_list.html:16
+msgid "Voted"
+msgstr "Проголосовало"
+
+#: ../../templates/voting_list.html:25
+msgid "Edit"
+msgstr "Редактировать"
+
+#: ../../templates/voting_result.html:2 ../../templates/voting_result.html:17
+msgid "Voting results"
+msgstr "Результаты голосования"
+
 #: ../../templates/voting_result.html:22
 msgid "Voted persons:"
 msgstr "Проголосовало:"
+
+#: ../../templates/voting_result.html:31
+#: ../../templates/voting_variant_edit.html:8
+#: ../../templates/voting_variants.html:60
+msgid "Add variant"
+msgstr "Добавить вариант"
+
+#: ../../templates/voting_result.html:36 ../../templates/voting_result.html:51
+msgid "Share at Vkontakte"
+msgstr "Распространить через Vkontakre"
+
+#: ../../templates/voting_result.html:37 ../../templates/voting_result.html:52
+msgid "Share at Facebook"
+msgstr "Распространить через Facebook"
+
+#: ../../templates/voting_result.html:38 ../../templates/voting_result.html:53
+msgid "Share at Twitter"
+msgstr "Распространить через Twitter"
+
+#: ../../templates/voting_result.html:39 ../../templates/voting_result.html:54
+msgid "Share at Google+"
+msgstr "Распространить через Google+"
 
 #: ../../templates/voting_variant_edit.html:2
 msgid "Edit voting variant"
@@ -105,11 +174,6 @@ msgstr "Редактировать вариант голосования"
 #: ../../templates/voting_variant_edit.html:4
 msgid "Voting variant editor"
 msgstr "Редактор вариантов голосования"
-
-#: ../../templates/voting_variant_edit.html:8
-#: ../../templates/voting_variants.html:53
-msgid "Add variant"
-msgstr "Добавить вариант"
 
 #: ../../templates/voting_variant_edit.html:18
 msgid "Title"
@@ -131,7 +195,7 @@ msgstr "Описание варианта"
 msgid "Close"
 msgstr "Закрыть"
 
-#: ../../templates/voting_variants.html:63
+#: ../../templates/voting_variants.html:57
 msgid "Variants"
 msgstr "Варианты"
 
@@ -147,3 +211,9 @@ msgstr "Перетащите варианты в порядке вашего п�
 #: ../../templates/voting_variants.html:94
 msgid "Skip variants you don't want to vote for"
 msgstr "Не перетаскивайте варианты, за которые вы не хотите голосовать"
+
+#~ msgid "You must vote first to see results"
+#~ msgstr "Чтобы увидеть результат вы должны проголосовать"
+
+#~ msgid "Available votings"
+#~ msgstr "Голосования"
