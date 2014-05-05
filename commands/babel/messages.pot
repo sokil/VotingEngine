@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-05 22:58+0300\n"
+"POT-Creation-Date: 2014-05-06 00:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -200,11 +200,30 @@ msgstr ""
 msgid "Vote"
 msgstr ""
 
-#: ../../templates/voting_variants.html:93
+#: ../../templates/voting_variants.html:88
+msgid "Place your vote here"
+msgstr ""
+
+#: ../../templates/voting_variants.html:97
+msgid ""
+"Standard systems allow to choose just one option among several. Because "
+"of this majority vote may cause dissatisfaction for large part of "
+"respondents as their voice in fact not taken into account. If the winning"
+" option voted 40 percents of respondents thought that the other 60 is not"
+" included. So respondent will not vote for the most suitable option, but "
+"for the most traversed to get to the percentage of winners. This voting "
+"system allows you to build acceptable ratings , and get the winning "
+"result that will satisfy the most number of respondents. Each option of "
+"the rating assigned a score greater the higher the option in rating. The "
+"winner is not the option that received the most first places in the "
+"ranking, but the one that received the most amount of points."
+msgstr ""
+
+#: ../../templates/voting_variants.html:100
 msgid "Drop variants in order of your favour"
 msgstr ""
 
-#: ../../templates/voting_variants.html:94
+#: ../../templates/voting_variants.html:103
 msgid "Skip variants you don't want to vote for"
 msgstr ""
 

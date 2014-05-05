@@ -85,14 +85,24 @@
                 </div>
 
                 <ul id="vote" class="votingPanel list-group">
+                    <li class="list-group-item" id="lblDropPlaceMarker">{{ _('Place your vote here') }}</li>
                 </ul>
+
             </div>
         </form>
 
-        <ul class="bg-info" style="padding: 10px 50px;">
-            <li>{{ _('Drop variants in order of your favour') }}</li>
-            <li>{{ _('Skip variants you don\'t want to vote for') }}</li>
-        </ul>
+        <div style="font-size: 12px;">
+            <p class="bg-success" style="padding: 10px; margin: 10px 0;">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                {{ _('Standard systems allow to choose just one option among several. Because of this majority vote may cause dissatisfaction for large part of respondents as their voice in fact not taken into account. If the winning option voted 40 percents of respondents thought that the other 60 is not included. So respondent will not vote for the most suitable option, but for the most traversed to get to the percentage of winners. This voting system allows you to build acceptable ratings , and get the winning result that will satisfy the most number of respondents. Each option of the rating assigned a score greater the higher the option in rating. The winner is not the option that received the most first places in the ranking, but the one that received the most amount of points.') }}
+            </p>
+            <p class="bg-success" style="padding: 10px; margin: 10px 0;">
+                <span class="glyphicon glyphicon-ok"></span> {{ _('Drop variants in order of your favour') }}
+            </p>
+            <p class="bg-success" style="padding: 10px; margin: 10px 0;">
+                <span class="glyphicon glyphicon-ok"></span> {{ _('Skip variants you don\'t want to vote for') }}
+            </p>
+        </div>
     </div>
 </div>
 
@@ -117,6 +127,10 @@
         }
     })
     .disableSelection();
+
+    $('#vote').on('sortover', function() {
+        $('#lblDropPlaceMarker').remove();
+    });
 
     // send form
     $('#frmVote').submit(function(e) {

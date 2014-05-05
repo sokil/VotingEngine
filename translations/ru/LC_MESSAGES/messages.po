@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-05 22:58+0300\n"
-"PO-Revision-Date: 2014-05-05 23:06+0300\n"
+"POT-Creation-Date: 2014-05-06 00:13+0300\n"
+"PO-Revision-Date: 2014-05-06 00:14+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
@@ -204,11 +204,42 @@ msgstr "Варианты"
 msgid "Vote"
 msgstr "Проголосовать"
 
-#: ../../templates/voting_variants.html:93
+#: ../../templates/voting_variants.html:88
+msgid "Place your vote here"
+msgstr "Переместите ваши голоса сюда в порядке предпочтения"
+
+#: ../../templates/voting_variants.html:97
+msgid ""
+"Standard systems allow to choose just one option among several. Because of "
+"this majority vote may cause dissatisfaction for large part of respondents "
+"as their voice in fact not taken into account. If the winning option voted "
+"40 percents of respondents thought that the other 60 is not included. So "
+"respondent will not vote for the most suitable option, but for the most "
+"traversed to get to the percentage of winners. This voting system allows you "
+"to build acceptable ratings , and get the winning result that will satisfy "
+"the most number of respondents. Each option of the rating assigned a score "
+"greater the higher the option in rating. The winner is not the option that "
+"received the most first places in the ranking, but the one that received the "
+"most amount of points."
+msgstr ""
+"Стандартные системы голосования позволяют из числа нескольких вариантов "
+"выбрать только один. Поэтому голосование большинством голосов может вызвать "
+"недовольство значительной части респондентов, ведь их голос по существу не "
+"учтен . Если за победивший вариант проголосовало 40 процентов респондентов, "
+"то мнение остальных 60 не учтено. Поэтому человек будет голосовать не за "
+"наиболее приемлемый для него вариан, а за наиболее проходной, чтобы попасть "
+"в процент победителей. Данная же система голосования позволяет выстроить "
+"рейтинг приемлемых вариантов , и получить результат - победитель , который "
+"удовлетворит максимальное количество респондентов. Каждому варианту в "
+"рейтинге ставится в соответствие балл тем больше, чем выше вариант в "
+"рейтинге . Победителем становится не тот вариант, который получил максимум "
+"первых мест в рейтинге , а тот что получил наибольшую сумму баллов."
+
+#: ../../templates/voting_variants.html:100
 msgid "Drop variants in order of your favour"
 msgstr "Перетащите варианты в порядке вашего предпочтения"
 
-#: ../../templates/voting_variants.html:94
+#: ../../templates/voting_variants.html:103
 msgid "Skip variants you don't want to vote for"
 msgstr "Не перетаскивайте варианты, за которые вы не хотите голосовать"
 
